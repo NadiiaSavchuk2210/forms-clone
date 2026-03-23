@@ -1,9 +1,18 @@
 import { useGetFormsQuery } from '@/shared/api/api';
 import Loader from '@/shared/ui/Loader/Loader';
 import { getUserFriendlyError } from '@/shared/lib/error-handler';
+import { useMetaTags } from '@/shared/lib/hooks/useMetaTags';
+import { HOME_PAGE_URL, SITE_NAME } from '@/shared/constants/metadata';
 
 const Home = () => {
   const { data, isLoading, error } = useGetFormsQuery();
+
+  useMetaTags({
+    title: SITE_NAME,
+    description:
+      'Create and share forms easily with our lightweight Google Forms clone.',
+    ogUrl: HOME_PAGE_URL,
+  });
 
   if (isLoading) {
     return (
