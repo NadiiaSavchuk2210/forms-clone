@@ -8,7 +8,7 @@ import {
   FormResponses,
   NotFound,
 } from './lazyComponents';
-import Loader from '../../../../shared/ui/Loader/Loader';
+import Loader from '@/shared/ui/Loader/Loader';
 
 const publicRoutes: RouteObject[] = [
   {
