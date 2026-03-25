@@ -71,6 +71,7 @@ export function validateFormData(formData: {
   title?: string;
   description?: string;
   questions?: Array<{
+    id?: string;
     title?: string;
     type?: string;
     options?: string[];
@@ -78,49 +79,53 @@ export function validateFormData(formData: {
 }): ValidationError[] {
   const errors: ValidationError[] = [];
 
-  const titleError = formValidators.required(formData.title, 'Form title');
-  if (titleError) errors.push(titleError);
+  if (!formData.title?.trim()) {
+    errors.push({
+      field: 'form-title',
+      message: 'Form title is required',
+    });
+  }
 
-  const titleLengthError = formValidators.maxLength(
-    formData.title,
-    200,
-    'Form title',
-  );
-  if (titleLengthError) errors.push(titleLengthError);
+  if (formData.title && formData.title.length > 200) {
+    errors.push({
+      field: 'form-title',
+      message: 'Form title must not exceed 200 characters',
+    });
+  }
 
-  const questionsError = formValidators.minItems(
-    formData.questions || [],
-    1,
-    'Questions',
-  );
-  if (questionsError) errors.push(questionsError);
+  if (formData.description && formData.description.length > 500) {
+    errors.push({
+      field: 'form-description',
+      message: 'Description must not exceed 500 characters',
+    });
+  }
+
+  if (!Array.isArray(formData.questions) || formData.questions.length === 0) {
+    errors.push({
+      field: 'questions',
+      message: 'Add at least one question before saving',
+    });
+  }
 
   if (Array.isArray(formData.questions)) {
     formData.questions.forEach((question, i) => {
       const qNum = i + 1;
+      const questionFieldId = question.id ?? String(qNum);
 
-      const titleError = formValidators.required(
-        question.title,
-        `Question ${qNum} title`,
-      );
-      if (titleError) errors.push(titleError);
-
-      const typeError = formValidators.required(
-        question.type,
-        `Question ${qNum} type`,
-      );
-      if (typeError) errors.push(typeError);
-
-      if (['MULTIPLE_CHOICE', 'CHECKBOX'].includes(question.type || '')) {
-        const optionsError = formValidators.minItems(
-          question.options || [],
-          2,
-          `Question ${qNum} options`,
-        );
-        if (optionsError) {
-          errors.push(optionsError);
-        }
+      if (!question.title?.trim()) {
+        errors.push({
+          field: `question-${questionFieldId}-title`,
+          message: `Question ${qNum} title is required`,
+        });
       }
+
+      if (!question.type?.trim()) {
+        errors.push({
+          field: `question-${questionFieldId}-type`,
+          message: `Question ${qNum} type is required`,
+        });
+      }
+
     });
   }
 
@@ -136,11 +141,17 @@ export function validateFormSubmission(
 
   questions.forEach((question) => {
     const answer = answersByQuestionId.get(question.id);
+    const value = answer?.value;
 
-    if (
-      !answer?.value ||
-      (Array.isArray(answer.value) && answer.value.length === 0)
-    ) {
+    if (!value) {
+      errors.push({
+        field: question.id,
+        message: `"${question.title}" is required`,
+      });
+      return;
+    }
+
+    if (Array.isArray(value) && value.length === 0) {
       errors.push({
         field: question.id,
         message: `"${question.title}" is required`,

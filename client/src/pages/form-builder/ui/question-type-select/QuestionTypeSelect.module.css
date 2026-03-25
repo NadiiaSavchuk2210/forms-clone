@@ -1,0 +1,118 @@
+.selectWrap {
+  position: relative;
+}
+
+.selectWrapOpen {
+  z-index: 24;
+}
+
+.selectWrap::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--color-text-primary);
+  border-bottom: 2px solid var(--color-text-primary);
+  transform: translateY(-65%) rotate(45deg);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.select {
+  width: 100%;
+  border: 2px solid var(--color-border-light);
+  border-radius: 18px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 4%, white),
+      var(--color-surface-warm)
+    );
+  color: var(--color-text-primary);
+  padding: 14px 48px 14px 16px;
+  font-size: var(--font-base);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.selectTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.selectOpen {
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 15%, transparent);
+}
+
+.selectValue {
+  display: block;
+}
+
+.selectMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  z-index: 25;
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 2px solid color-mix(in srgb, var(--color-primary) 24%, var(--color-border-light));
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 10%, white),
+      var(--color-surface-warm-soft) 70%
+    );
+  box-shadow: var(--shadow-elevated-md);
+}
+
+.selectOption {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background: var(--surface-overlay-strong);
+  color: var(--color-text-primary);
+  text-align: left;
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.selectOption:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--color-primary) 34%, var(--color-border));
+  background: color-mix(in srgb, var(--color-primary) 9%, white);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.selectOptionActive {
+  border-color: color-mix(in srgb, var(--color-primary) 48%, var(--color-border));
+  background: color-mix(in srgb, var(--color-primary) 14%, white);
+}
+
+.selectOptionLabel {
+  font-size: var(--font-sm);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.selectOptionHint {
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+  line-height: 1.45;
+}

@@ -1,6 +1,7 @@
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { ThemeProvider } from './theme/ThemeProvider';
+import AppToaster from '@/shared/ui/AppToaster';
 
 interface Props {
   children: React.ReactNode;
@@ -9,7 +10,10 @@ interface Props {
 const Providers = ({ children }: Props) => {
   return (
     <ThemeProvider>
-      <Provider store={store}>{children}</Provider>
+      <Provider store={store}>
+        {children}
+        <AppToaster />
+      </Provider>
     </ThemeProvider>
   );
 };

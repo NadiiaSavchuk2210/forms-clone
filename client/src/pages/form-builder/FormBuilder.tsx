@@ -1,19 +1,76 @@
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
+import { useFormBuilder } from './model';
+import {
+  FormBuilderFeedback,
+  FormBuilderHero,
+  FormBuilderPreview,
+  FormBuilderQuestionActions,
+  FormBuilderQuestions,
+  FormBuilderSavePanel,
+  FormBuilderSetup,
+} from './ui';
+import css from './FormBuilder.module.css';
 
 const FormBuilder = () => {
+  const builder = useFormBuilder();
+
   usePageMeta({
     title: 'Create Form',
     description:
-      'The form builder page structure is prepared and will be completed in the next pull request.',
+      'Build a lightweight form with text, multiple choice, checkbox, and date questions.',
     path: ROUTES.FORM_BUILDER,
   });
 
   return (
-    <main className="container">
-      <section>
-        <h1>Create Form</h1>
-      </section>
+    <main className={css.builderPage}>
+      <div className="container">
+        <FormBuilderHero />
+
+        <section className={css.builderGrid}>
+          <div className={css.panel}>
+            <FormBuilderSetup
+              title={builder.title}
+              description={builder.description}
+              titleError={builder.formTitleError}
+              descriptionError={builder.formDescriptionError}
+              onTitleChange={builder.actions.setup.onTitleChange}
+              onDescriptionChange={builder.actions.setup.onDescriptionChange}
+            />
+
+            <FormBuilderQuestionActions
+              questionTypeOptions={builder.questionTypeOptions}
+              errorMessage={builder.questionsError}
+              onAddQuestion={builder.actions.questionSection.onAddQuestion}
+            />
+
+            <FormBuilderQuestions
+              model={builder.questionsModel}
+              actions={builder.actions.questionCards}
+            />
+          </div>
+
+          <aside className={css.sidebar}>
+            <FormBuilderPreview
+              questions={builder.questions}
+              questionTypeLabels={builder.questionTypeLabels}
+            />
+
+            <FormBuilderSavePanel
+              isSaving={builder.isSaving}
+              onSubmit={builder.actions.save.onSubmit}
+              onReset={builder.actions.save.onReset}
+            />
+
+            <FormBuilderFeedback
+              validationErrors={builder.validationErrors}
+              errorMessage={builder.errorMessage}
+              successState={builder.successState}
+              successLinks={builder.successLinks}
+            />
+          </aside>
+        </section>
+      </div>
     </main>
   );
 };

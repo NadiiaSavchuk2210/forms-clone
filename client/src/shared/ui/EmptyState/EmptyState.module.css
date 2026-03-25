@@ -67,7 +67,7 @@
   font-size: var(--font-sm);
   font-weight: 500;
 
-  color: #fff;
+  color: var(--color-surface-strong);
   background: var(--color-primary);
 
   border: none;
