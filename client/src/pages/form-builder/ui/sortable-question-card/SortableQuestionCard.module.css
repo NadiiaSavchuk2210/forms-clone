@@ -1,0 +1,179 @@
+.questionCard {
+  overflow: visible;
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--color-surface);
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  box-shadow: 0 18px 40px rgb(35 32 24 / 0.07);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.questionCard:focus-within {
+  z-index: 12;
+}
+
+.questionTop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  padding: 18px 18px 0;
+}
+
+.questionHeading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.dragHandle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 2px solid color-mix(in srgb, var(--color-primary) 18%, var(--color-border-light));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--color-primary) 6%, white);
+  color: var(--color-text-secondary);
+  cursor: grab;
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.dragHandle:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-border));
+  color: var(--color-primary);
+}
+
+.dragHandle:active {
+  cursor: grabbing;
+}
+
+.dragHandleStatic {
+  cursor: grabbing;
+}
+
+.questionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 10%, white);
+  color: var(--color-text-primary);
+  font-size: var(--font-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.questionTools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.questionBody {
+  padding: 18px;
+  display: grid;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.questionCardDragging {
+  z-index: 18;
+  opacity: 0.42;
+  transform: scale(0.985);
+  box-shadow: 0 22px 46px rgb(35 32 24 / 0.14);
+  transform-origin: center;
+  cursor: grabbing;
+}
+
+.questionCardOverlay {
+  pointer-events: none;
+  opacity: 1;
+  transform: scale(1.015) rotate(-0.25deg);
+  border-color: color-mix(in srgb, var(--color-primary) 28%, var(--color-border-light));
+  box-shadow:
+    0 26px 56px rgb(35 32 24 / 0.18),
+    0 0 0 1px color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+
+.field,
+.fieldInline {
+  display: grid;
+  gap: 8px;
+}
+
+.fieldLabel {
+  font-size: var(--font-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-primary);
+}
+
+.textInput,
+.optionInput {
+  width: 100%;
+}
+
+.typeGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.typeHelp {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+}
+
+.optionList {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+
+.optionRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.optionControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.muted {
+  color: var(--color-text-secondary);
+}
+
+.errorText {
+  margin: 0;
+  color: var(--color-danger);
+  font-size: var(--font-sm);
+  line-height: 1.5;
+}

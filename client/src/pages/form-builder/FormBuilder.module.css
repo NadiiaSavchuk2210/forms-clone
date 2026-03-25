@@ -1,0 +1,48 @@
+.builderPage {
+  padding-top: 32px;
+  padding-bottom: 56px;
+  background:
+    radial-gradient(circle at top left, var(--color-primary-soft), transparent 28%),
+    linear-gradient(
+      180deg,
+      var(--color-surface-warm-muted) 0%,
+      var(--color-gray-surface) 24%
+    );
+}
+
+.builderGrid {
+  display: grid;
+  gap: 24px;
+}
+
+.panel {
+  background: var(--color-surface);
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-md);
+  padding: 24px 20px;
+  display: grid;
+  gap: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .builderPage {
+    padding-top: 40px;
+  }
+
+  .panel {
+    padding: 28px;
+  }
+
+  .builderGrid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.9fr);
+    align-items: start;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 106px;
+    display: grid;
+    gap: 20px;
+  }
+}

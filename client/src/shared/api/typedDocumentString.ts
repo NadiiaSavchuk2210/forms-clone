@@ -13,6 +13,8 @@ class TypedDocumentStringImpl extends String {
   }
 }
 
+export { TypedDocumentStringImpl as TypedDocumentString };
+
 declare global {
   // eslint-disable-next-line no-var
   var TypedDocumentString: typeof TypedDocumentStringImpl;
@@ -22,4 +24,3 @@ declare global {
 globalThis.TypedDocumentString = TypedDocumentStringImpl;
 
 export {};
-

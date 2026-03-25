@@ -1,0 +1,42 @@
+.toastViewport {
+  top: 88px !important;
+  right: 18px !important;
+}
+
+.toast {
+  min-width: 280px;
+  max-width: 360px;
+  padding: 16px 18px !important;
+  border-radius: 22px !important;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 18%, var(--color-border-light)) !important;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 12%, white), transparent 58%),
+    var(--color-surface) !important;
+  color: var(--color-text-primary) !important;
+  box-shadow: var(--shadow-elevated-lg) !important;
+  font-family: var(--font-primary) !important;
+  font-size: var(--font-sm) !important;
+  line-height: 1.5 !important;
+}
+
+.success {
+  border-color: color-mix(in srgb, var(--color-primary) 30%, var(--color-border-light)) !important;
+}
+
+.error {
+  border-color: color-mix(in srgb, var(--color-danger-strong) 40%, var(--color-border-light)) !important;
+}
+
+@media screen and (max-width: 767px) {
+  .toastViewport {
+    top: 84px !important;
+    right: 12px !important;
+    left: 12px !important;
+  }
+
+  .toast {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+  }
+}

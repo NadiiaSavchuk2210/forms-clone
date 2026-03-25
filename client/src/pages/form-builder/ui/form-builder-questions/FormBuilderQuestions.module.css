@@ -1,0 +1,13 @@
+.questionList {
+  display: grid;
+  gap: 18px;
+  isolation: isolate;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.questionItem {
+  margin: 0;
+  padding: 0;
+}

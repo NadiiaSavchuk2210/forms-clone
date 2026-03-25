@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ThemeContext } from './theme.context';
 import { Theme } from '@/features/theme-switcher/model/theme.config';
-
-const STORAGE_KEY = 'app-theme';
+import { THEME_STORAGE_KEY } from './constants';
 
 interface Props {
   children: React.ReactNode;
@@ -10,12 +9,12 @@ interface Props {
 
 export const ThemeProvider = ({ children }: Props) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    const savedTheme = localStorage.getItem(STORAGE_KEY) as Theme | null;
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
     return savedTheme ?? 'green';
   });
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, theme);
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 

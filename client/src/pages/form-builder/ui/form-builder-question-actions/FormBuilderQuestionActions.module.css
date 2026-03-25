@@ -1,0 +1,42 @@
+.actionsCard {
+  padding: 20px;
+  display: grid;
+  gap: 14px;
+  background: var(--color-surface);
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-md);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: var(--font-xl);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+}
+
+.sectionText {
+  margin: 6px 0 0;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.addButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.errorText {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--color-danger-strong) 8%, transparent);
+  color: var(--color-danger);
+  font-size: var(--font-sm);
+  line-height: 1.5;
+}

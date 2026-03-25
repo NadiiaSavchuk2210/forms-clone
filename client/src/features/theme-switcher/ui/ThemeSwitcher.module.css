@@ -14,7 +14,7 @@
   border: 1px solid var(--color-border-light);
   border-radius: 999px;
   background: color-mix(in srgb, var(--color-surface) 76%, transparent);
-  box-shadow: 0 4px 14px rgba(60, 64, 67, 0.12);
+  box-shadow: var(--shadow-floating-sm);
   backdrop-filter: blur(10px);
   color: var(--color-text-primary);
   cursor: pointer;
@@ -30,7 +30,7 @@
 .trigger:focus-visible {
   opacity: 1;
   transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(60, 64, 67, 0.14);
+  box-shadow: var(--shadow-floating-md);
   background: color-mix(in srgb, var(--color-surface) 88%, transparent);
 }
 
@@ -57,7 +57,7 @@
   border: 1px solid var(--color-border-light);
   border-radius: 999px;
   background: color-mix(in srgb, var(--color-surface) 84%, transparent);
-  box-shadow: 0 10px 24px rgba(60, 64, 67, 0.16);
+  box-shadow: var(--shadow-floating-lg);
   backdrop-filter: blur(12px);
   opacity: 0;
   visibility: hidden;

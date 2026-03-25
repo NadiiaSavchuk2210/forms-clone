@@ -13,9 +13,7 @@ import { useHomePagination } from './model';
 import { HomeHeader } from './ui';
 import css from './Home.module.css';
 import { clsx } from 'clsx';
-
-const FORMS_PER_PAGE = 6;
-const FORMS_POLLING_INTERVAL = 15000;
+import { FORMS_PER_PAGE, FORMS_POLLING_INTERVAL } from './constants';
 
 const Home = () => {
   const { data, isLoading, isError, error, refetch } = useGetFormsQuery(

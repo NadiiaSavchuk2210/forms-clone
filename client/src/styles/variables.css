@@ -4,6 +4,14 @@
   --color-bg: #f6f8f7;
   --color-surface: #ffffff;
   --color-gray-surface: rgb(245 245 247);
+  --color-surface-strong: #fff;
+  --color-surface-warm: #fffdfa;
+  --color-surface-warm-soft: #fffdf7;
+  --color-surface-warm-alt: #fffefd;
+  --color-surface-warm-muted: #fff7eb;
+  --color-surface-highlight: #fff6dd;
+  --color-surface-danger-soft: #fff5f2;
+  --color-surface-danger-subtle: #fffdfc;
 
   --color-text-primary: #202124;
   --color-text-secondary: #5f6368;
@@ -11,10 +19,16 @@
 
   --color-border: #dadce0;
   --color-border-light: #e8eaed;
+  --color-border-danger-soft: #f2b6ae;
+  --color-danger: #b42318;
+  --color-danger-strong: #d64545;
 
   --header-bg: rgba(255, 255, 255, 0.8);
   --header-blur: 12px;
   --header-border: rgba(0, 0, 0, 0.05);
+  --overlay-backdrop: rgb(0 0 0 / 0.8);
+  --surface-overlay-soft: rgb(255 255 255 / 0.72);
+  --surface-overlay-strong: rgb(255 255 255 / 0.82);
 
   --color-hover: rgba(60, 64, 67, 0.08);
 
@@ -27,6 +41,14 @@
 
   --shadow-card:
     0 1px 2px rgba(60, 64, 67, 0.1), 0 2px 6px rgba(60, 64, 67, 0.15);
+  --shadow-elevated-soft: 0 8px 20px rgb(0 0 0 / 0.05);
+  --shadow-elevated-md: 0 18px 40px rgb(35 32 24 / 0.07);
+  --shadow-elevated-lg: 0 22px 44px rgb(35 32 24 / 0.14);
+  --shadow-elevated-xl: 0 22px 46px rgb(35 32 24 / 0.14);
+  --shadow-floating-sm: 0 4px 14px rgb(60 64 67 / 0.12);
+  --shadow-floating-md: 0 8px 18px rgb(60 64 67 / 0.14);
+  --shadow-floating-lg: 0 10px 24px rgb(60 64 67 / 0.16);
+  --shadow-card-hover: 0 10px 18px rgb(35 32 24 / 0.08);
 
   /* Font size */
   --font-xs: 0.75rem; /* 12px */

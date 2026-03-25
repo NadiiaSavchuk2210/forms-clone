@@ -1,0 +1,62 @@
+.sectionHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: var(--font-xl);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+}
+
+.sectionText {
+  margin: 6px 0 0;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.fieldGrid {
+  display: grid;
+  gap: 18px;
+}
+
+.titleInput {
+  min-height: 64px;
+}
+
+.descriptionTextarea {
+  min-height: 148px;
+}
+
+@media screen and (max-width: 540px) {
+  .titleInput {
+    min-height: 58px;
+  }
+
+  .descriptionTextarea {
+    min-height: 136px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  .titleInput {
+    min-height: 60px;
+    font-size: var(--font-base);
+  }
+
+  .descriptionTextarea {
+    min-height: 140px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .fieldGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

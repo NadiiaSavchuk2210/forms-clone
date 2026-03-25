@@ -1,0 +1,96 @@
+.hero {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.heroCopy {
+  padding: 28px 22px;
+  border-radius: 32px;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-primary) 22%, white),
+      var(--color-surface-highlight) 68%
+    );
+  border: 2px solid color-mix(in srgb, var(--color-primary) 26%, white);
+  box-shadow: var(--shadow-elevated-md);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--surface-overlay-soft);
+  color: var(--color-text-primary);
+  font-size: var(--font-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0 0 14px;
+  font-size: clamp(2.3rem, 6vw, 4.25rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+}
+
+.accent {
+  color: var(--color-primary);
+}
+
+.subtitle {
+  max-width: 40rem;
+  margin: 0;
+  font-size: var(--font-base);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.heroNotes {
+  display: block;
+}
+
+.noteList {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.noteCard {
+  padding: 20px;
+  border-radius: 24px;
+  background: var(--color-surface);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 14%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-md);
+}
+
+.noteLabel {
+  display: block;
+  margin-bottom: 10px;
+  font-size: var(--font-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-primary);
+}
+
+.noteCard p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+@media screen and (min-width: 768px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
+    align-items: start;
+  }
+}
