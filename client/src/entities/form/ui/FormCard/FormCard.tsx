@@ -53,9 +53,13 @@ const FormCard = ({ form }: FormCardProps) => {
           <MdOutlineAssignment size={18} />
           View Form
         </Button>
-        <Button as="link" href={ROUTES.FORM_RESPONSES(form.id)} variant="outline">
+        <Button
+          as="link"
+          href={ROUTES.FORM_RESPONSES(form.id)}
+          variant="outline"
+        >
           <MdOutlineAnalytics size={18} />
-          Responses
+          View Responses
         </Button>
       </div>
     </li>

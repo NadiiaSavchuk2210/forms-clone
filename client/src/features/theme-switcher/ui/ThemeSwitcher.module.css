@@ -1,22 +1,92 @@
 .themeSwitcher {
   position: fixed;
-  bottom: 100px;
-  right: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  right: 14px;
+  bottom: 14px;
+  z-index: var(--z-header);
 }
 
-li {
-  display: inline-block;
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--color-border-light);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 76%, transparent);
+  box-shadow: 0 4px 14px rgba(60, 64, 67, 0.12);
+  backdrop-filter: blur(10px);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  opacity: 0.82;
+  transition:
+    opacity var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.trigger:hover,
+.trigger:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(60, 64, 67, 0.14);
+  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.triggerIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.themeOptions {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  margin: 0;
+  list-style: none;
+  border: 1px solid var(--color-border-light);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 84%, transparent);
+  box-shadow: 0 10px 24px rgba(60, 64, 67, 0.16);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px) scale(0.96);
+  transition:
+    opacity var(--transition-base),
+    visibility var(--transition-base),
+    transform var(--transition-base);
+}
+
+.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.themeItem {
+  display: inline-flex;
 }
 
 .themeCircle {
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   cursor: pointer;
+  padding: 0;
   transition:
     transform var(--transition-base),
     box-shadow var(--transition-base),
@@ -25,11 +95,12 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+  appearance: none;
 }
 
 .themeCircle:hover {
-  transform: scale(1.15);
-  box-shadow: 4px 8px 8px hsl(0deg 0% 0% / 0.38);
+  transform: scale(1.08);
+  box-shadow: 0 4px 10px hsl(0deg 0% 0% / 0.2);
 }
 
 .themeCircle.active {
@@ -48,10 +119,34 @@ li {
   transform: translate(-50%, -50%);
 }
 
-.themeInput {
+.themeLabel {
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
   pointer-events: none;
+}
+
+@media screen and (max-width: 767px) {
+  .themeSwitcher {
+    top: 72px;
+    right: 12px;
+    bottom: auto;
+  }
+
+  .trigger {
+    opacity: 0.9;
+  }
+
+  .themeOptions {
+    right: 0;
+    top: calc(100% + 8px);
+    bottom: auto;
+    transform: translateY(-8px) scale(0.96);
+    max-width: calc(100vw - 32px);
+  }
+
+  .open {
+    transform: translateY(0) scale(1);
+  }
 }
