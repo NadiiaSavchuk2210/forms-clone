@@ -1,0 +1,82 @@
+.card {
+  background-color: var(--color-surface);
+  border: 2px solid var(--header-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  min-height: 200px;
+
+  gap: 16px;
+  transition:
+    border-color var(--transition-base),
+    transform var(--transition-base);
+}
+.card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.dragHandle {
+  cursor: grab;
+  color: var(--color-text-disabled);
+  padding: 4px;
+  transition: color var(--transition-fast);
+}
+
+.dragHandle:hover {
+  color: var(--color-text-secondary);
+}
+
+.dragHandle:active {
+  cursor: grabbing;
+}
+
+.formTitle {
+  font-size: var(--font-lg);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.formDescription {
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-top: auto;
+}
+
+.cardActions {
+  flex: 0 1 auto;
+  min-width: 130px;
+}

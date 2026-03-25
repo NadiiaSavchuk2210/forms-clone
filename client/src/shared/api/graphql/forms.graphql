@@ -29,7 +29,7 @@ query GetForm($id: ID!) {
 mutation CreateForm(
   $title: String!
   $description: String
-  $questions: [QuestionInput]
+  $questions: [QuestionInput!]!
 ) {
   createForm(title: $title, description: $description, questions: $questions) {
     id

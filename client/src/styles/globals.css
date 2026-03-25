@@ -10,7 +10,7 @@ body {
   font-weight: 400;
   line-height: 1.25;
   color: var(--color-text-primary);
-  background-color: var(--color-bg);
+  background-color: var(--color-gray-surface);
   transition: color var(--transition-base);
 }
 
@@ -18,13 +18,14 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
+  background-color: var(--color-gray-surface);
   z-index: -1;
-  background-color: var(--color-bg);
   transition: background-color var(--transition-base);
 }
 
 main {
   min-height: calc(100vh - 96px);
+  background-color: var(--color-gray-surface);
 }
 
 button {
@@ -45,7 +46,7 @@ h3::selection,
 h4::selection,
 span::selection {
   background-color: var(--color-primary);
-  color: var(--color-white);
+  color: var(--color-surface);
 }
 
 .visually-hidden {

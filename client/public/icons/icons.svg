@@ -1,0 +1,15 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1"
+    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <symbol id="icon-logo" viewBox="0 0 32 32">
+            <path fill="#56368a" style="fill: var(--color1, #56368a)" d="M19.6 8l4.4 0.8 3.6-0.8-8-8-1.040 3.76z">
+            </path>
+            <path fill="#7248b9" style="fill: var(--color2, #7248b9)"
+                d="M19.6 8v-8h-13.040c-1.2 0-2.16 0.96-2.16 2.16v27.6c0 1.2 0.96 2.16 2.16 2.16h18.88c1.2 0 2.16-0.96 2.16-2.16v-21.76z">
+            </path>
+            <path fill="#fff" style="fill: var(--color3, #fff)"
+                d="M10.56 23.12c-0.64 0-1.12-0.48-1.12-1.12s0.48-1.12 1.12-1.12 1.12 0.48 1.12 1.12c-0.080 0.56-0.56 1.12-1.12 1.12zM10.56 18.72c-0.64 0-1.12-0.48-1.12-1.12s0.48-1.12 1.12-1.12 1.12 0.48 1.12 1.12-0.56 1.12-1.12 1.12zM10.56 14.32c-0.64 0-1.12-0.48-1.12-1.12s0.48-1.12 1.12-1.12 1.12 0.48 1.12 1.12c-0.080 0.64-0.56 1.12-1.12 1.12zM22.56 22.88h-9.12v-1.84h9.12zM22.56 18.56h-9.12v-1.84h9.12zM22.56 14.16h-9.12v-1.84h9.12z">
+            </path>
+        </symbol>
+    </defs>
+</svg>

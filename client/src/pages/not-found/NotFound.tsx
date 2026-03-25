@@ -1,18 +1,10 @@
-import {
-  HOME_PAGE_URL,
-  OG_IMAGE,
-  SITE_NAME,
-} from '@/shared/constants/metadata';
-import { useMetaTags } from '@/shared/lib/hooks/useMetaTags';
+import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
 
 const NotFound = () => {
-  useMetaTags({
-    title: `404 | Page Not Found - ${SITE_NAME}`,
+  usePageMeta({
+    title: '404 Page Not Found',
     description: 'The page you are looking for does not exist.',
-    ogTitle: `404 | Page Not Found`,
-    ogDescription: 'This page could not be found.',
-    ogImage: `${HOME_PAGE_URL}/${OG_IMAGE}`,
-    ogUrl: `${HOME_PAGE_URL}/404`,
+    path: '/404',
   });
 
   return <div>404 - Page Not Found</div>;

@@ -1,45 +1,85 @@
+import {
+  QuestionType,
+  type CreateFormInput,
+  type Form,
+  type SubmitResponseInput,
+} from '@shared/types';
+
 export interface ValidationResult {
   valid: boolean;
   error?: string;
 }
 
-export function validateForm(input: {
-  title: string;
-  description?: string;
-  questions?: Array<{ title: string; type: string; options?: string[] }>;
-}): ValidationResult {
+const MAX_FORM_TITLE_LENGTH = 200;
+const MAX_FORM_DESCRIPTION_LENGTH = 1000;
+const MAX_QUESTION_TITLE_LENGTH = 300;
+
+const normalizeText = (value: string): string => value.trim();
+
+const normalizeOptions = (options: string[] | undefined): string[] =>
+  (options ?? []).map(normalizeText).filter(Boolean);
+
+export function validateForm(input: CreateFormInput): ValidationResult {
   const errors: string[] = [];
 
   if (!input.title || input.title.trim().length === 0) {
     errors.push('Form title is required');
+  } else if (input.title.trim().length > MAX_FORM_TITLE_LENGTH) {
+    errors.push(
+      `Form title must be less than ${MAX_FORM_TITLE_LENGTH} characters`,
+    );
   }
 
-  if (input.title.length > 200) {
-    errors.push('Form title must be less than 200 characters');
-  }
-
-  if (input.description && input.description.length > 1000) {
-    errors.push('Form description must be less than 1000 characters');
+  if (
+    input.description &&
+    input.description.trim().length > MAX_FORM_DESCRIPTION_LENGTH
+  ) {
+    errors.push(
+      `Form description must be less than ${MAX_FORM_DESCRIPTION_LENGTH} characters`,
+    );
   }
 
   if (!Array.isArray(input.questions) || input.questions.length === 0) {
     errors.push('Form must have at least one question');
+    return {
+      valid: false,
+      error: errors.join('; '),
+    };
   }
 
-  if (Array.isArray(input.questions)) {
-    for (let i = 0; i < input.questions.length; i++) {
-      const question = input.questions[i];
-      if (!question.title || question.title.trim().length === 0) {
-        errors.push(`Question ${i + 1} title is required`);
+  for (let i = 0; i < input.questions.length; i++) {
+    const question = input.questions[i];
+    const questionNumber = i + 1;
+    const normalizedTitle = question.title?.trim() ?? '';
+
+    if (normalizedTitle.length === 0) {
+      errors.push(`Question ${questionNumber} title is required`);
+    } else if (normalizedTitle.length > MAX_QUESTION_TITLE_LENGTH) {
+      errors.push(
+        `Question ${questionNumber} title must be less than ${MAX_QUESTION_TITLE_LENGTH} characters`,
+      );
+    }
+
+    if (!Object.values(QuestionType).includes(question.type)) {
+      errors.push(`Question ${questionNumber} type is required`);
+      continue;
+    }
+
+    if (
+      question.type === QuestionType.MULTIPLE_CHOICE ||
+      question.type === QuestionType.CHECKBOX
+    ) {
+      const normalizedQuestionOptions = normalizeOptions(question.options);
+
+      if (normalizedQuestionOptions.length < 2) {
+        errors.push(`Question ${questionNumber} must have at least 2 options`);
       }
-      if (!question.type || question.type.trim().length === 0) {
-        errors.push(`Question ${i + 1} type is required`);
-      }
+
       if (
-        (question.type === 'MULTIPLE_CHOICE' || question.type === 'CHECKBOX') &&
-        (!Array.isArray(question.options) || question.options.length < 2)
+        new Set(normalizedQuestionOptions).size !==
+        normalizedQuestionOptions.length
       ) {
-        errors.push(`Question ${i + 1} must have at least 2 options`);
+        errors.push(`Question ${questionNumber} options must be unique`);
       }
     }
   }
@@ -51,11 +91,8 @@ export function validateForm(input: {
 }
 
 export function validateResponse(
-  input: {
-    formId: string;
-    answers: Array<{ questionId: string; value: string | string[] }>;
-  },
-  form: { questions: Array<{ id: string }> } | undefined,
+  input: SubmitResponseInput,
+  form: Form | undefined,
 ): ValidationResult {
   const errors: string[] = [];
 
@@ -68,18 +105,101 @@ export function validateResponse(
   }
 
   if (!Array.isArray(input.answers)) {
-    errors.push('Answers must be an array');
+    return { valid: false, error: 'Answers must be an array' };
   }
 
-  const questionIds = new Set(form.questions.map((q) => q.id));
+  const questionMap = new Map(
+    form.questions.map((question) => [question.id, question]),
+  );
+  const seenQuestionIds = new Set<string>();
 
   for (const answer of input.answers) {
-    if (!answer.questionId || answer.questionId.trim().length === 0) {
+    const normalizedQuestionId = answer.questionId?.trim() ?? '';
+
+    if (normalizedQuestionId.length === 0) {
       errors.push('Answer questionId is required');
-    } else if (!questionIds.has(answer.questionId)) {
+      continue;
+    }
+
+    if (seenQuestionIds.has(normalizedQuestionId)) {
+      errors.push(`Duplicate answer for question ${normalizedQuestionId}`);
+      continue;
+    }
+
+    seenQuestionIds.add(normalizedQuestionId);
+
+    const question = questionMap.get(normalizedQuestionId);
+
+    if (!question) {
       errors.push(
-        `Answer questionId ${answer.questionId} does not match form questions`,
+        `Answer questionId ${normalizedQuestionId} does not match form questions`,
       );
+      continue;
+    }
+
+    if (!Array.isArray(answer.value)) {
+      errors.push(`Answer for question ${normalizedQuestionId} must be a list`);
+      continue;
+    }
+
+    const normalizedValues = answer.value.map(normalizeText).filter(Boolean);
+
+    switch (question.type) {
+      case QuestionType.TEXT:
+      case QuestionType.DATE: {
+        if (normalizedValues.length !== 1) {
+          errors.push(
+            `Question ${normalizedQuestionId} must contain exactly one value`,
+          );
+        }
+        break;
+      }
+
+      case QuestionType.MULTIPLE_CHOICE: {
+        if (normalizedValues.length !== 1) {
+          errors.push(
+            `Question ${normalizedQuestionId} must contain exactly one selected option`,
+          );
+          break;
+        }
+
+        if (!question.options.includes(normalizedValues[0])) {
+          errors.push(
+            `Question ${normalizedQuestionId} contains an invalid option`,
+          );
+        }
+        break;
+      }
+
+      case QuestionType.CHECKBOX: {
+        if (normalizedValues.length === 0) {
+          errors.push(
+            `Question ${normalizedQuestionId} must contain at least one selected option`,
+          );
+          break;
+        }
+
+        const invalidOptions = normalizedValues.filter(
+          (value) => !question.options.includes(value),
+        );
+
+        if (invalidOptions.length > 0) {
+          errors.push(
+            `Question ${normalizedQuestionId} contains invalid checkbox options`,
+          );
+        }
+
+        if (new Set(normalizedValues).size !== normalizedValues.length) {
+          errors.push(
+            `Question ${normalizedQuestionId} contains duplicate checkbox values`,
+          );
+        }
+        break;
+      }
+
+      default: {
+        errors.push(`Unsupported question type for ${normalizedQuestionId}`);
+      }
     }
   }
 

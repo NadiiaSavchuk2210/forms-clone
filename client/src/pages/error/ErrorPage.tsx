@@ -1,10 +1,5 @@
 import { useRouteError, isRouteErrorResponse } from 'react-router-dom';
-import { useMetaTags } from '@/shared/lib/hooks/useMetaTags';
-import {
-  HOME_PAGE_URL,
-  OG_IMAGE,
-  SITE_NAME,
-} from '@/shared/constants/metadata';
+import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
 
 const ErrorPage = () => {
   const error = useRouteError();
@@ -15,13 +10,10 @@ const ErrorPage = () => {
     ? error.statusText
     : 'Something went wrong';
 
-  useMetaTags({
-    title: `${status} | Error - ${SITE_NAME}`,
+  usePageMeta({
+    title: `${status} Error`,
     description: message,
-    ogTitle: `${status} | Application Error`,
-    ogDescription: message,
-    ogImage: `${HOME_PAGE_URL}/${OG_IMAGE}`,
-    ogUrl: `${HOME_PAGE_URL}/error`,
+    path: '/error',
   });
 
   return (

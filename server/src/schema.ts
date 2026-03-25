@@ -10,7 +10,7 @@ export const typeDefs = `#graphql
     id: ID!
     title: String!
     type: QuestionType!
-    options: [String]
+    options: [String!]!
   }
 
   type Form {
@@ -22,7 +22,7 @@ export const typeDefs = `#graphql
 
   type Answer {
     questionId: ID!
-    value: [String]
+    value: [String!]!
   }
 
   type Response {
@@ -40,19 +40,19 @@ export const typeDefs = `#graphql
   input QuestionInput {
     title: String!
     type: QuestionType!
-    options: [String]
+    options: [String!]
   }
 
   input AnswerInput {
     questionId: ID!
-    value: String
+    value: [String!]!
   }
 
   type Mutation {
     createForm(
       title: String!
       description: String
-      questions: [QuestionInput]
+      questions: [QuestionInput!]!
     ): Form!
 
     submitResponse(
