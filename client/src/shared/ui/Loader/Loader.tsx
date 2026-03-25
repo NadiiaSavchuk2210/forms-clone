@@ -1,10 +1,17 @@
 import { ScaleLoader } from 'react-spinners';
 import css from './Loader.module.css';
+import { useTheme } from '@/app/providers/theme/useTheme';
+import { THEMES } from '@/features/theme-switcher/model/theme.config';
 
-export default function Loader() {
+const Loader = () => {
+  const { theme } = useTheme();
+  const { color } = THEMES[theme];
+
   return (
     <div className={css.backdrop}>
-      <ScaleLoader color="#aa3bff" />
+      <ScaleLoader color={color} />
     </div>
   );
-}
+};
+
+export default Loader;

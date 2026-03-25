@@ -1,5 +1,4 @@
-import { Form, Response } from '@shared/types';
+import type { Form, Response } from '@shared/types';
 
 export const forms: Form[] = [];
-
 export const responses: Response[] = [];

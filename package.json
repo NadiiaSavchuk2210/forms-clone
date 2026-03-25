@@ -7,9 +7,16 @@
     "shared"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev -w client\" \"npm run dev -w server\""
+    "dev": "concurrently \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w shared && npm run build -w server && npm run build -w client",
+    "test": "npm run test -w server && npm run test -w client",
+    "type-check": "npm run type-check -w shared && npm run type-check -w server && npm run type-check -w client",
+    "codegen": "npm run codegen -w client",
+    "clean": "rm -rf client/dist server/dist shared/dist",
+    "lint": "npm run lint -w client"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "tsconfig-paths": "^4.2.0"
   }
 }

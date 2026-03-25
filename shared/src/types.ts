@@ -9,7 +9,7 @@ export interface Question {
   id: string;
   title: string;
   type: QuestionType;
-  options?: string[];
+  options: string[];
 }
 
 export interface Form {
@@ -21,11 +21,33 @@ export interface Form {
 
 export interface Answer {
   questionId: string;
-  value: string | string[];
+  value: string[];
 }
 
 export interface Response {
   id: string;
   formId: string;
   answers: Answer[];
+}
+
+export interface QuestionInput {
+  title: string;
+  type: QuestionType;
+  options?: string[];
+}
+
+export interface CreateFormInput {
+  title: string;
+  description?: string;
+  questions: QuestionInput[];
+}
+
+export interface AnswerInput {
+  questionId: string;
+  value: string[];
+}
+
+export interface SubmitResponseInput {
+  formId: string;
+  answers: AnswerInput[];
 }

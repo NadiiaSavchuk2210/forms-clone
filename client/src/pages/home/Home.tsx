@@ -1,91 +1,98 @@
-import { useGetFormsQuery } from '@/shared/api/api';
-import Loader from '@/shared/ui/Loader/Loader';
-import { getUserFriendlyError } from '@/shared/lib/error-handler';
-import { useMetaTags } from '@/shared/lib/hooks/useMetaTags';
-import { HOME_PAGE_URL, SITE_NAME } from '@/shared/constants/metadata';
+import { DndContext, closestCenter } from '@dnd-kit/core';
+import { ROUTES } from '@/app/providers/router/config/routesConfig';
+import Button from '@/shared/ui/Button';
+import ContentLoader from '@/shared/ui/ContentLoader';
+import EmptyState from '@/shared/ui/EmptyState';
+import Pagination from '@/shared/ui/Pagination';
+import { useGetFormsQuery } from '@/shared/api/queries/forms';
+import { getErrorMessage } from '@/shared/lib/error-handler';
+import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
+import { useHomeDnd } from '@/shared/hooks/useHomeDnd';
+import FormsList from '@/widgets/forms-list/FormsList';
+import { useHomePagination } from './model';
+import { HomeHeader } from './ui';
+import css from './Home.module.css';
+import { clsx } from 'clsx';
+
+const FORMS_PER_PAGE = 6;
+const FORMS_POLLING_INTERVAL = 15000;
 
 const Home = () => {
-  const { data, isLoading, error } = useGetFormsQuery();
+  const { data, isLoading, isError, error, refetch } = useGetFormsQuery(
+    undefined,
+    {
+      pollingInterval: FORMS_POLLING_INTERVAL,
+      skipPollingIfUnfocused: true,
+    },
+  );
+  const forms = data?.forms ?? [];
+  const { forms: draggableForms, sensors, handleDragEnd } = useHomeDnd(forms);
+  const {
+    currentPage,
+    totalPages,
+    visibleItems,
+    goToPreviousPage,
+    goToNextPage,
+  } = useHomePagination({
+    items: draggableForms,
+    itemsPerPage: FORMS_PER_PAGE,
+  });
 
-  useMetaTags({
-    title: SITE_NAME,
+  usePageMeta({
+    title: 'Forms',
     description:
-      'Create and share forms easily with our lightweight Google Forms clone.',
-    ogUrl: HOME_PAGE_URL,
+      'Create, fill out, and review lightweight Google Forms style questionnaires.',
+    path: ROUTES.HOME,
   });
 
   if (isLoading) {
     return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '400px',
-        }}
-      >
-        <Loader />
-      </div>
+      <main className={clsx('container', css.homeContainer)}>
+        <HomeHeader />
+        <ContentLoader label="Loading forms..." />
+      </main>
     );
   }
 
-  if (error) {
-    const { title, message } = getUserFriendlyError(error);
+  if (isError) {
     return (
-      <div
-        style={{
-          padding: '20px',
-          backgroundColor: '#fee',
-          borderRadius: '8px',
-          color: '#c00',
-        }}
-      >
-        <h2>{title}</h2>
-        <p>{message}</p>
-        <button
-          onClick={() => window.location.reload()}
-          style={{ marginTop: '10px', padding: '8px 16px', cursor: 'pointer' }}
-        >
-          Try Again
-        </button>
-      </div>
-    );
-  }
-
-  if (!data || data.length === 0) {
-    return (
-      <div style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
-        <h2>No Forms Yet</h2>
-        <p>Create a new form to get started</p>
-      </div>
+      <main className={clsx('container', css.homeContainer)}>
+        <section className={css.errorContainer}>
+          <h2>Failed to load forms</h2>
+          <p>{getErrorMessage(error)}</p>
+          <Button onClick={() => refetch()}>Try Again</Button>
+        </section>
+      </main>
     );
   }
 
   return (
-    <div>
-      <h1>My Forms</h1>
-      <div style={{ display: 'grid', gap: '16px', marginTop: '20px' }}>
-        {data.map((form) => (
-          <div
-            key={form.id}
-            style={{
-              padding: '16px',
-              border: '1px solid #ddd',
-              borderRadius: '8px',
-              cursor: 'pointer',
-            }}
+    <main className={clsx('container', css.homeContainer)}>
+      <HomeHeader />
+
+      {draggableForms.length === 0 ? (
+        <section>
+          <EmptyState variant="forms" />
+        </section>
+      ) : (
+        <>
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
           >
-            <h3>{form.title}</h3>
-            {form.description && (
-              <p style={{ color: '#666' }}>{form.description}</p>
-            )}
-            <small style={{ color: '#999' }}>
-              {form.questions?.length || 0} questions
-            </small>
-          </div>
-        ))}
-      </div>
-    </div>
+            <FormsList forms={visibleItems} />
+          </DndContext>
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPrevious={goToPreviousPage}
+            onNext={goToNextPage}
+          />
+        </>
+      )}
+    </main>
   );
 };
 

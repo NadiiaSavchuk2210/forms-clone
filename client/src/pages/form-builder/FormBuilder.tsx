@@ -1,15 +1,21 @@
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
-import { HOME_PAGE_URL } from '@/shared/constants/metadata';
-import { useMetaTags } from '@/shared/lib/hooks/useMetaTags';
+import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
 
 const FormBuilder = () => {
-  useMetaTags({
-    title: 'Create Form | Google Forms Lite',
-    description: 'Build your custom form with multiple question types.',
-    ogUrl: `${HOME_PAGE_URL}${ROUTES.FORM_BUILDER}`,
+  usePageMeta({
+    title: 'Create Form',
+    description:
+      'The form builder page structure is prepared and will be completed in the next pull request.',
+    path: ROUTES.FORM_BUILDER,
   });
 
-  return <div>FormBuilder</div>;
+  return (
+    <main className="container">
+      <section>
+        <h1>Create Form</h1>
+      </section>
+    </main>
+  );
 };
 
 export default FormBuilder;

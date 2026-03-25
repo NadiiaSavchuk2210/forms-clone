@@ -1,18 +1,24 @@
-import { ROUTES } from '@/app/providers/router/config/routesConfig';
-import { HOME_PAGE_URL } from '@/shared/constants/metadata';
-import { useMetaTags } from '@/shared/lib/hooks/useMetaTags';
 import { useParams } from 'react-router-dom';
+import { ROUTES } from '@/app/providers/router/config/routesConfig';
+import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
 
 const FormFiller = () => {
   const { id } = useParams<{ id: string }>();
 
-  useMetaTags({
-    title: 'Fill Form',
-    description: 'Submit your responses to the form.',
-    ogUrl: id ? `${HOME_PAGE_URL}${ROUTES.FORM_FILL(id)}` : undefined,
+  usePageMeta({
+    title: id ? `Fill Form ${id}` : 'Fill Form',
+    description:
+      'The form filling page shell is ready and the interactive submission flow will be added in the next pull request.',
+    path: id ? ROUTES.FORM_FILL(id) : ROUTES.FORM_FILL_PATTERN,
   });
 
-  return <div>FormFiller {id}</div>;
+  return (
+    <main className="container">
+      <section>
+        <h1>Fill Form</h1>
+      </section>
+    </main>
+  );
 };
 
 export default FormFiller;

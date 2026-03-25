@@ -2,7 +2,14 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "module": "ES2022",
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "noImplicitAny": true,
     "paths": {
       "@/*": ["src/*"],
       "@shared/*": ["../shared/src/*"],
@@ -12,6 +19,8 @@
       "@widgets/*": ["src/widgets/*"]
     },
     "jsx": "react-jsx",
-    "strict": true
-  }
+    "strict": true,
+    "types": ["vite/client"]
+  },
+  "include": ["src", "codegen.ts"]
 }

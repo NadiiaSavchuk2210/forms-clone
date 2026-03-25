@@ -1,0 +1,11 @@
+import { Theme } from '@/features/theme-switcher/model/theme.config';
+import { createContext } from 'react';
+
+export interface ThemeContextType {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+}
+
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+  undefined,
+);
