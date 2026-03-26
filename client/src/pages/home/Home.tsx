@@ -4,6 +4,8 @@ import Button from '@/shared/ui/Button';
 import ContentLoader from '@/shared/ui/ContentLoader';
 import EmptyState from '@/shared/ui/EmptyState';
 import Pagination from '@/shared/ui/Pagination';
+import { PageLayout } from '@/shared/ui/layout';
+import { clsx } from 'clsx';
 import { useGetFormsQuery } from '@/entities/form/api';
 import { getErrorMessage } from '@/shared/lib/error-handler';
 import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
@@ -11,7 +13,6 @@ import FormsList from '@/widgets/forms-list/FormsList';
 import { useHomeDnd, useHomePagination } from './model';
 import { HomeHeader } from './ui';
 import css from './Home.module.css';
-import { clsx } from 'clsx';
 import { FORMS_PER_PAGE, FORMS_POLLING_INTERVAL } from './constants';
 
 const Home = () => {
@@ -44,30 +45,30 @@ const Home = () => {
 
   if (isLoading) {
     return (
-      <main className={clsx('container', css.homeContainer)}>
+      <PageLayout className={css.homeContainer}>
         <HomeHeader formsCount={0} />
         <section className={css.collectionShell}>
           <ContentLoader label="Loading forms..." />
         </section>
-      </main>
+      </PageLayout>
     );
   }
 
   if (isError) {
     return (
-      <main className={clsx('container', css.homeContainer)}>
+      <PageLayout className={css.homeContainer}>
         <HomeHeader formsCount={0} />
         <section className={css.errorContainer}>
           <h2>Failed to load forms</h2>
           <p>{getErrorMessage(error)}</p>
           <Button onClick={() => refetch()}>Try Again</Button>
         </section>
-      </main>
+      </PageLayout>
     );
   }
 
   return (
-    <main className={clsx('container', css.homeContainer)}>
+    <PageLayout className={css.homeContainer}>
       <HomeHeader formsCount={draggableForms.length} />
 
       {draggableForms.length === 0 ? (
@@ -105,7 +106,7 @@ const Home = () => {
           />
         </section>
       )}
-    </main>
+    </PageLayout>
   );
 };
 

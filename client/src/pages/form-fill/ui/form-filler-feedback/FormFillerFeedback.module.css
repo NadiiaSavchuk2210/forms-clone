@@ -1,0 +1,48 @@
+.feedbackCard {
+  padding: 20px;
+  display: grid;
+  gap: 12px;
+  background: var(--color-surface);
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-md);
+}
+
+.successCard {
+  border-color: color-mix(in srgb, var(--color-primary) 30%, white);
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-primary) 12%, white),
+      var(--color-surface-warm-alt)
+    );
+}
+
+.errorCard {
+  border-color: var(--color-border-danger-soft);
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-surface-danger-soft),
+      var(--color-surface-danger-subtle)
+    );
+}
+
+.feedbackTitle {
+  margin: 0;
+  font-size: var(--font-lg);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.feedbackText,
+.errorList {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.errorList {
+  padding-left: 18px;
+}

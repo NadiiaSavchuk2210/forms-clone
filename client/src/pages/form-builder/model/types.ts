@@ -1,5 +1,5 @@
 import { QuestionType } from '@/shared/api/generated';
-import type { ValidationError } from '@/shared/lib/validators';
+import type { ValidationError } from '@/shared/lib/validation';
 import type {
   DragEndEvent,
   SensorDescriptor,
@@ -16,6 +16,8 @@ export type QuestionTypeOption = {
 };
 
 export type QuestionTypeLabels = Record<QuestionType, string>;
+
+export type FormBuilderFieldErrors = Record<string, string[]>;
 
 export type SuccessState = {
   id: string;

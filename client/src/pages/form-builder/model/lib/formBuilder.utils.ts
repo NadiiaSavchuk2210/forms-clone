@@ -1,17 +1,27 @@
 import { type QuestionInput, QuestionType } from '@/shared/api/generated';
-import type { ValidationError } from '@/shared/lib/validators';
+import type { ValidationError } from '@/shared/lib/validation';
 import type { FormBuilderQuestionDraft } from '../slice/formBuilderSlice';
+import type { FormBuilderFieldErrors } from '../types';
 
-export const normalizeOptions = (options: string[]) =>
-  options.map((option) => option.trim()).filter(Boolean);
+const isChoiceQuestion = (type: QuestionType): boolean => {
+  return (
+    type === QuestionType.MultipleChoice || type === QuestionType.Checkbox
+  );
+};
+
+export const normalizeOptions = (options: string[]): string[] => {
+  return options.map((option) => option.trim()).filter(Boolean);
+};
 
 export const buildQuestionInput = (
   question: FormBuilderQuestionDraft,
-): QuestionInput => ({
-  title: question.title.trim(),
-  type: question.type,
-  options: normalizeOptions(question.options),
-});
+): QuestionInput => {
+  return {
+    title: question.title.trim(),
+    type: question.type,
+    options: normalizeOptions(question.options),
+  };
+};
 
 export const getChoiceQuestionsErrors = (
   questions: FormBuilderQuestionDraft[],
@@ -19,23 +29,20 @@ export const getChoiceQuestionsErrors = (
   const errors: ValidationError[] = [];
 
   questions.forEach((question, index) => {
-    if (
-      question.type !== QuestionType.MultipleChoice &&
-      question.type !== QuestionType.Checkbox
-    ) {
+    if (!isChoiceQuestion(question.type)) {
       return;
     }
 
-    const normalized = normalizeOptions(question.options);
+    const normalizedOptions = normalizeOptions(question.options);
 
-    if (normalized.length < 2) {
+    if (normalizedOptions.length < 2) {
       errors.push({
         field: `question-${question.id}-options`,
         message: `Question ${index + 1} must have at least 2 filled options`,
       });
     }
 
-    if (new Set(normalized).size !== normalized.length) {
+    if (new Set(normalizedOptions).size !== normalizedOptions.length) {
       errors.push({
         field: `question-${question.id}-options`,
         message: `Question ${index + 1} options must be unique`,
@@ -48,13 +55,16 @@ export const getChoiceQuestionsErrors = (
 
 export const buildValidationErrorMap = (
   errors: ValidationError[],
-): Record<string, string[]> =>
-  errors.reduce<Record<string, string[]>>((acc, error) => {
+): FormBuilderFieldErrors => {
+  return errors.reduce<FormBuilderFieldErrors>((acc, error) => {
     acc[error.field] = [...(acc[error.field] ?? []), error.message];
     return acc;
   }, {});
+};
 
 export const getFirstFieldError = (
-  errorMap: Record<string, string[]>,
+  errorMap: FormBuilderFieldErrors,
   field: string,
-): string | null => errorMap[field]?.[0] ?? null;
+): string | null => {
+  return errorMap[field]?.[0] ?? null;
+};

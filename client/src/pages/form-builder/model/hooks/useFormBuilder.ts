@@ -7,42 +7,26 @@ import {
   useSensors,
 } from '@dnd-kit/core';
 import { useAppDispatch, useAppSelector } from '@/app/providers/store/hooks';
-import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import { useCreateFormMutation } from '@/entities/form/api';
-import { QuestionType } from '@/shared/api/generated';
+import type { CreateFormMutation } from '@/shared/api/generated';
 import { getUserFriendlyError } from '@/shared/lib/error-handler';
-import { validateFormData } from '@/shared/lib/validators';
+import { validateFormData } from '@/shared/lib/validation';
+import { reorderQuestions, resetFormBuilder } from '../slice/formBuilderSlice';
 import {
-  addQuestion,
-  addQuestionOption,
-  moveQuestionDown,
-  moveQuestionUp,
-  reorderQuestions,
-  removeQuestion,
-  removeQuestionOption,
-  resetFormBuilder,
-  setFormDescription,
-  setFormTitle,
-  updateQuestionOption,
-  updateQuestionTitle,
-  updateQuestionType,
-} from '../slice/formBuilderSlice';
-import {
-  buildValidationErrorMap,
   buildQuestionInput,
-  getFirstFieldError,
+  buildValidationErrorMap,
   getChoiceQuestionsErrors,
+  getFirstFieldError,
 } from '../lib/formBuilder.utils';
 import {
-  QUESTION_TYPE_LABELS,
-  QUESTION_TYPE_OPTIONS,
-} from '../lib/constants';
-import type {
-  FormBuilderActions,
-  FormBuilderQuestionsModel,
-  QuestionCardActions,
-  SuccessLinks,
-} from '../types';
+  createFormBuilderActions,
+  createFormBuilderQuestionsModel,
+  createQuestionCardActions,
+  createSuccessLinks,
+  getVisibleValidationErrors,
+} from '../lib/formBuilder.view-model';
+import { QUESTION_TYPE_LABELS, QUESTION_TYPE_OPTIONS } from '../lib/constants';
+import type { SuccessState } from '../types';
 
 export const useFormBuilder = () => {
   const dispatch = useAppDispatch();
@@ -50,42 +34,47 @@ export const useFormBuilder = () => {
     (state) => state.formBuilder,
   );
   const [showValidationErrors, setShowValidationErrors] = useState(false);
-  const [successState, setSuccessState] = useState<{
-    id: string;
-    title: string;
-  } | null>(null);
+  const [successState, setSuccessState] = useState<SuccessState>(null);
   const [createForm, createFormState] = useCreateFormMutation();
+  const { error: saveError, isLoading: isSaving } = createFormState;
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
   );
 
-  const questionTypeOptions = useMemo(() => QUESTION_TYPE_OPTIONS, []);
-
-  const saveErrorMessage = createFormState.error
-    ? getUserFriendlyError(createFormState.error).message
+  const saveErrorMessage = saveError
+    ? getUserFriendlyError(saveError).message
     : null;
+
+  // Validation
   const formValidationErrors = useMemo(() => {
     const baseErrors = validateFormData({
       title,
       description,
       questions,
     });
+
     const choiceQuestionErrors = getChoiceQuestionsErrors(questions);
 
     return [...baseErrors, ...choiceQuestionErrors];
   }, [description, questions, title]);
-  const visibleValidationErrors = useMemo(() => {
-    if (!showValidationErrors) {
-      return [];
-    }
 
-    return formValidationErrors;
-  }, [formValidationErrors, showValidationErrors]);
+  const visibleValidationErrors = useMemo(
+    () =>
+      getVisibleValidationErrors(showValidationErrors, formValidationErrors),
+    [formValidationErrors, showValidationErrors],
+  );
   const fieldErrorMap = useMemo(
     () => buildValidationErrorMap(visibleValidationErrors),
     [visibleValidationErrors],
   );
+  const formTitleError = getFirstFieldError(fieldErrorMap, 'form-title');
+  const formDescriptionError = getFirstFieldError(
+    fieldErrorMap,
+    'form-description',
+  );
+  const questionsError = getFirstFieldError(fieldErrorMap, 'questions');
 
+  // Handlers
   const handleDragEnd = ({ active, over }: DragEndEvent) => {
     if (over && active.id !== over.id) {
       dispatch(
@@ -97,26 +86,23 @@ export const useFormBuilder = () => {
     }
   };
 
-  const successLinks: SuccessLinks = successState
-    ? {
-        fill: ROUTES.FORM_FILL(successState.id),
-        responses: ROUTES.FORM_RESPONSES(successState.id),
-      }
-    : null;
-  const questionActions: QuestionCardActions = {
-    onMoveQuestionUp: (id: string) => dispatch(moveQuestionUp(id)),
-    onMoveQuestionDown: (id: string) => dispatch(moveQuestionDown(id)),
-    onRemoveQuestion: (id: string) => dispatch(removeQuestion(id)),
-    onQuestionTitleChange: (id: string, value: string) =>
-      dispatch(updateQuestionTitle({ id, title: value })),
-    onQuestionTypeChange: (id: string, value: QuestionType) =>
-      dispatch(updateQuestionType({ id, type: value })),
-    onAddOption: (id: string) => dispatch(addQuestionOption(id)),
-    onOptionChange: (id: string, optionIndex: number, value: string) =>
-      dispatch(updateQuestionOption({ id, optionIndex, value })),
-    onRemoveOption: (id: string, optionIndex: number) =>
-      dispatch(removeQuestionOption({ id, optionIndex })),
+  const resetBuilderViewState = () => {
+    setShowValidationErrors(false);
+    setSuccessState(null);
   };
+
+  const handleCreateFormSuccess = (response: CreateFormMutation) => {
+    setSuccessState({
+      id: response.createForm.id,
+      title: response.createForm.title,
+    });
+    dispatch(resetFormBuilder());
+    setShowValidationErrors(false);
+    toast.success(`"${response.createForm.title}" is ready to share.`, {
+      id: 'form-builder-success',
+    });
+  };
+
   const handleSubmit = async () => {
     if (formValidationErrors.length > 0) {
       setShowValidationErrors(true);
@@ -138,15 +124,7 @@ export const useFormBuilder = () => {
         questions: payloadQuestions,
       }).unwrap();
 
-      setSuccessState({
-        id: response.createForm.id,
-        title: response.createForm.title,
-      });
-      dispatch(resetFormBuilder());
-      setShowValidationErrors(false);
-      toast.success(`"${response.createForm.title}" is ready to share.`, {
-        id: 'form-builder-success',
-      });
+      handleCreateFormSuccess(response);
     } catch {
       setSuccessState(null);
       toast.error(saveErrorMessage ?? 'Unable to save the form right now.', {
@@ -154,39 +132,25 @@ export const useFormBuilder = () => {
       });
     }
   };
-  const actions: FormBuilderActions = {
-    setup: {
-      onTitleChange: (value: string) => dispatch(setFormTitle(value)),
-      onDescriptionChange: (value: string) => dispatch(setFormDescription(value)),
+
+  // View models
+  const questionCardActions = createQuestionCardActions(dispatch);
+  const actions = createFormBuilderActions({
+    dispatch,
+    onSubmit: () => {
+      void handleSubmit();
     },
-    questionSection: {
-      onAddQuestion: (type: QuestionType) => dispatch(addQuestion(type)),
-    },
-    questionCards: questionActions,
-    save: {
-      onSubmit: () => {
-        void handleSubmit();
-      },
-      onReset: () => {
-        dispatch(resetFormBuilder());
-        setShowValidationErrors(false);
-        setSuccessState(null);
-      },
-    },
-  };
-  const questionsModel: FormBuilderQuestionsModel = {
+    onResetState: resetBuilderViewState,
+    questionCardActions,
+  });
+
+  const questionsModel = createFormBuilderQuestionsModel({
     sensors,
     questions,
-    questionTypeLabels: QUESTION_TYPE_LABELS,
-    questionTypeOptions,
-    getQuestionTypeHint: (type: QuestionType) =>
-      QUESTION_TYPE_OPTIONS.find((item) => item.value === type)?.hint ?? '',
-    getQuestionTitleError: (questionId: string) =>
-      getFirstFieldError(fieldErrorMap, `question-${questionId}-title`),
-    getQuestionOptionsError: (questionId: string) =>
-      getFirstFieldError(fieldErrorMap, `question-${questionId}-options`),
+    fieldErrorMap,
     onDragEnd: handleDragEnd,
-  };
+  });
+  const successLinks = createSuccessLinks(successState);
 
   return {
     title,
@@ -196,16 +160,13 @@ export const useFormBuilder = () => {
     successState,
     successLinks,
     errorMessage: saveErrorMessage,
-    isSaving: createFormState.isLoading,
-    questionTypeOptions,
+    isSaving,
+    questionTypeOptions: QUESTION_TYPE_OPTIONS,
     questionTypeLabels: QUESTION_TYPE_LABELS,
     questionsModel,
     actions,
-    formTitleError: getFirstFieldError(fieldErrorMap, 'form-title'),
-    formDescriptionError: getFirstFieldError(
-      fieldErrorMap,
-      'form-description',
-    ),
-    questionsError: getFirstFieldError(fieldErrorMap, 'questions'),
+    formTitleError,
+    formDescriptionError,
+    questionsError,
   };
 };
