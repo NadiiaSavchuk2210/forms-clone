@@ -1,36 +1,46 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import css from './Header.module.css';
 import Icon from '@/shared/ui/Icon/Icon';
 import { SITE_NAME } from '@/shared/constants/metadata';
 import Button from '@/shared/ui/Button/Button';
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
-import { MdAdd } from 'react-icons/md';
-import { clsx } from 'clsx';
+import { Container } from '@/shared/ui/layout';
+import { getHeaderAction } from './lib';
 
 const Header = () => {
+  const { pathname } = useLocation();
+  const { href, icon: ActionIcon, label, variant } = getHeaderAction(pathname);
+
   return (
     <header className={css.header}>
-      <div className={clsx(css.headerContainer, 'container')}>
-        <Link to="/" className={css.logo} aria-label={SITE_NAME}>
-          <Icon
-            name="icon-logo"
-            className={css.logoIcon}
-            label="logo"
-            width={40}
-            height={40}
-          />
-          <span>{SITE_NAME}</span>
+      <Container className={css.headerContainer}>
+        <Link to={ROUTES.HOME} className={css.logo} aria-label={SITE_NAME}>
+          <span className={css.logoMark}>
+            <Icon
+              name="icon-logo"
+              className={css.logoIcon}
+              label="logo"
+              width={40}
+              height={40}
+            />
+          </span>
+
+          <span className={css.logoCopy}>
+            <span className={css.logoTitle}>{SITE_NAME}</span>
+            <span className={css.logoTag}>Forms workspace</span>
+          </span>
         </Link>
 
         <Button
-          className={css.createFormBtn}
+          className={css.actionBtn}
           as="link"
-          href={ROUTES.FORM_BUILDER}
+          href={href}
+          variant={variant}
         >
-          <span className={css.createFormBtnText}>Start a new form</span>
-          <MdAdd size={22} />
+          <span className={css.actionBtnText}>{label}</span>
+          <ActionIcon size={22} />
         </Button>
-      </div>
+      </Container>
     </header>
   );
 };

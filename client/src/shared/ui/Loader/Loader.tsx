@@ -1,15 +1,23 @@
-import { ScaleLoader } from 'react-spinners';
 import css from './Loader.module.css';
-import { useTheme } from '@/app/providers/theme/useTheme';
-import { THEMES } from '@/features/theme-switcher/model/theme.config';
+import { MdOutlineAutoAwesome } from 'react-icons/md';
 
 const Loader = () => {
-  const { theme } = useTheme();
-  const { color } = THEMES[theme];
-
   return (
-    <div className={css.backdrop}>
-      <ScaleLoader color={color} />
+    <div className={css.backdrop} aria-live="polite" aria-busy="true">
+      <div className={css.loaderCard}>
+        <div className={css.orbit}>
+          <span className={css.ring} />
+          <span className={css.ringSecondary} />
+          <span className={css.core}>
+            <MdOutlineAutoAwesome className={css.coreIcon} />
+          </span>
+        </div>
+
+        <div className={css.copy}>
+          <p className={css.title}>Loading the page</p>
+          <p className={css.text}>Getting everything ready for you.</p>
+        </div>
+      </div>
     </div>
   );
 };

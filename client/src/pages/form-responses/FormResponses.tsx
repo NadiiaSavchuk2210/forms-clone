@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
 import { PageLayout } from '@/shared/ui/layout';
+import Breadcrumbs from '@/shared/ui/Breadcrumbs';
 
 const FormResponses = () => {
   const { id } = useParams<{ id: string }>();
@@ -15,6 +16,13 @@ const FormResponses = () => {
 
   return (
     <PageLayout>
+      <Breadcrumbs
+        items={[
+          { label: 'Forms', href: ROUTES.HOME },
+          { label: 'Responses' },
+        ]}
+      />
+
       <section>
         <h1>Form Responses</h1>
       </section>

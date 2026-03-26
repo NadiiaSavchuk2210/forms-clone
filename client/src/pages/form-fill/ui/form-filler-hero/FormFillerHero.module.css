@@ -91,3 +91,31 @@
     align-items: start;
   }
 }
+
+[data-theme='dark'] .heroCopy {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-surface-strong) 84%, black),
+      color-mix(in srgb, var(--color-surface-highlight) 72%, black)
+    );
+  border-color: color-mix(in srgb, var(--color-primary) 34%, var(--color-border-light));
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.04),
+    var(--shadow-elevated-lg);
+}
+
+[data-theme='dark'] .eyebrow {
+  background: color-mix(in srgb, var(--color-surface-strong) 84%, transparent);
+  color: var(--color-accent);
+}
+
+[data-theme='dark'] .noteCard {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface-strong) 88%, black),
+      color-mix(in srgb, var(--color-surface) 96%, black)
+    );
+  border-color: color-mix(in srgb, var(--color-primary) 18%, var(--color-border-light));
+}

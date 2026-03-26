@@ -1,5 +1,7 @@
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
+import Breadcrumbs from '@/shared/ui/Breadcrumbs';
+import { Container } from '@/shared/ui/layout';
 import { useFormBuilder } from './model';
 import {
   FormBuilderFeedback,
@@ -24,7 +26,14 @@ const FormBuilder = () => {
 
   return (
     <main className={css.builderPage}>
-      <div className="container">
+      <Container>
+        <Breadcrumbs
+          items={[
+            { label: 'Forms', href: ROUTES.HOME },
+            { label: 'Create form' },
+          ]}
+        />
+
         <FormBuilderHero />
 
         <section className={css.builderGrid}>
@@ -70,7 +79,7 @@ const FormBuilder = () => {
             />
           </aside>
         </section>
-      </div>
+      </Container>
     </main>
   );
 };

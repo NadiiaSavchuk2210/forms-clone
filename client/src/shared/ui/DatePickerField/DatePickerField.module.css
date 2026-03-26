@@ -80,11 +80,11 @@
   line-height: 1.5;
 }
 
-.pickerRoot :global(.react-datepicker-popper) {
+.popper {
   z-index: 20;
 }
 
-.pickerRoot :global(.react-datepicker) {
+.calendar {
   border: 1px solid color-mix(in srgb, var(--color-primary) 18%, var(--color-border-light));
   border-radius: 22px;
   overflow: hidden;
@@ -93,7 +93,12 @@
   font-family: inherit;
 }
 
-.pickerRoot :global(.react-datepicker__header) {
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px 12px;
   border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 12%, var(--color-border-light));
   background:
     linear-gradient(
@@ -103,7 +108,7 @@
     );
 }
 
-.pickerRoot :global(.react-datepicker__current-month) {
+.currentMonth {
   color: var(--color-text-primary);
   font-size: var(--font-sm);
   font-weight: 800;
@@ -111,21 +116,52 @@
   letter-spacing: 0.08em;
 }
 
-.pickerRoot :global(.react-datepicker__day-name) {
+.navButton {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 14%, var(--color-border-light));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 86%, transparent);
+  color: var(--color-text-primary);
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.navButton:hover:not(:disabled) {
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 28%, var(--color-border-light));
+  transform: translateY(-1px);
+}
+
+.navButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.weekDay {
   color: var(--color-text-secondary);
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-}
-
-.pickerRoot :global(.react-datepicker__day),
-.pickerRoot :global(.react-datepicker__day-name) {
   width: 2.2rem;
   line-height: 2.2rem;
   margin: 0.15rem;
 }
 
-.pickerRoot :global(.react-datepicker__day) {
+.day,
+.weekDay {
+  width: 2.2rem;
+  line-height: 2.2rem;
+  margin: 0.15rem;
+}
+
+.day {
   border-radius: 999px;
   color: var(--color-text-primary);
   transition:
@@ -134,20 +170,50 @@
     transform var(--transition-fast);
 }
 
-.pickerRoot :global(.react-datepicker__day:hover) {
+.day:hover {
   background: color-mix(in srgb, var(--color-primary) 14%, white);
   transform: translateY(-1px);
 }
 
-.pickerRoot :global(.react-datepicker__day--selected),
-.pickerRoot :global(.react-datepicker__day--keyboard-selected) {
+.daySelected {
   background: var(--color-primary);
   color: white;
 }
 
-.pickerRoot :global(.react-datepicker__navigation-icon::before) {
-  border-color: var(--color-text-primary);
-  border-width: 2px 2px 0 0;
+[data-theme='dark'] .inputButton {
+  background: color-mix(in srgb, var(--color-surface-warm) 94%, black);
+  border-color: color-mix(in srgb, var(--color-primary) 12%, var(--color-border-light));
+}
+
+[data-theme='dark'] .placeholderText {
+  color: color-mix(in srgb, var(--color-text-secondary) 92%, white);
+}
+
+[data-theme='dark'] .iconWrap {
+  background: color-mix(in srgb, var(--color-primary) 18%, var(--color-surface-strong));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-primary) 20%, var(--color-border-light));
+}
+
+[data-theme='dark'] .calendar {
+  background: var(--color-surface-strong);
+  border-color: color-mix(in srgb, var(--color-primary) 22%, var(--color-border-light));
+}
+
+[data-theme='dark'] .calendarHeader {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 10%, var(--color-surface-strong)),
+      color-mix(in srgb, var(--color-surface) 96%, black)
+    );
+}
+
+[data-theme='dark'] .navButton {
+  background: color-mix(in srgb, var(--color-surface) 92%, black);
+}
+
+[data-theme='dark'] .day:hover {
+  background: color-mix(in srgb, var(--color-primary) 18%, var(--color-surface-strong));
 }
 
 @media screen and (max-width: 540px) {

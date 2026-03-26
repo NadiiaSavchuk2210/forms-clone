@@ -19,6 +19,12 @@ const ICONS = {
   generic: MdOutlineAssignment,
 };
 
+const EYEBROW_LABELS: Record<EmptyStateVariant, string> = {
+  forms: 'Ready to begin',
+  responses: 'Quiet inbox',
+  generic: 'Coming soon',
+};
+
 const EmptyState = ({
   title,
   description,
@@ -38,9 +44,15 @@ const EmptyState = ({
   return (
     <div className={clsx(css.wrapper, className)}>
       <div className={css.card}>
+        <div className={css.backgroundGlow} aria-hidden="true" />
+        <div className={css.backgroundOrbit} aria-hidden="true" />
+
+        <span className={css.eyebrow}>{EYEBROW_LABELS[variant]}</span>
+
         <div className={css.iconWrapper}>
           <Icon className={css.icon} />
         </div>
+
         <h3 className={css.title}>{resolvedTitle}</h3>
         <p className={css.description}>{resolvedDescription}</p>
 

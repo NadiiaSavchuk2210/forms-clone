@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import Button from '@/shared/ui/Button';
+import Breadcrumbs from '@/shared/ui/Breadcrumbs';
 import ContentLoader from '@/shared/ui/ContentLoader';
 import EmptyState from '@/shared/ui/EmptyState';
 import { PageLayout } from '@/shared/ui/layout';
@@ -106,6 +107,13 @@ const FormFiller = () => {
 
   return (
     <PageLayout className={css.fillerPage}>
+      <Breadcrumbs
+        items={[
+          { label: 'Forms', href: ROUTES.HOME },
+          { label: 'Fill form' },
+        ]}
+      />
+
       <FormFillerHero
         title={form.title}
         description={form.description}

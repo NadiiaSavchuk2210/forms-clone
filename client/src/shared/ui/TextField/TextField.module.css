@@ -70,6 +70,33 @@
     color-mix(in srgb, var(--color-danger-strong) 12%, transparent);
 }
 
+[data-theme='dark'] .input {
+  background: color-mix(in srgb, var(--color-surface-warm) 94%, black);
+  border-color: color-mix(in srgb, var(--color-primary) 12%, var(--color-border-light));
+}
+
+[data-theme='dark'] .input::placeholder {
+  color: color-mix(in srgb, var(--color-text-secondary) 92%, white);
+}
+
+[data-theme='dark'] .textarea {
+  scrollbar-color: color-mix(in srgb, var(--color-primary) 42%, black)
+    color-mix(in srgb, var(--color-surface-strong) 86%, black);
+}
+
+[data-theme='dark'] .textarea::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--color-surface-strong) 86%, black);
+}
+
+[data-theme='dark'] .textarea::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-primary) 38%, black);
+  border-color: color-mix(in srgb, var(--color-surface-strong) 86%, black);
+}
+
+[data-theme='dark'] .textarea::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--color-primary) 48%, black);
+}
+
 .errorText {
   color: var(--color-danger);
   font-size: var(--font-sm);

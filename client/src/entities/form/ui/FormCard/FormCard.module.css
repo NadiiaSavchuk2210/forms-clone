@@ -102,3 +102,19 @@
 
   margin-top: auto;
 }
+
+[data-theme='dark'] .card {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface-strong) 88%, black),
+      color-mix(in srgb, var(--color-surface) 98%, black)
+    );
+  border-color: color-mix(in srgb, var(--color-primary) 18%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-lg);
+}
+
+[data-theme='dark'] .dragHandle {
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface-strong));
+  border-color: color-mix(in srgb, var(--color-primary) 18%, var(--color-border-light));
+}

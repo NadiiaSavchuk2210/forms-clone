@@ -7,24 +7,88 @@
   min-width: 280px;
   max-width: 360px;
   padding: 16px 18px !important;
-  border-radius: 22px !important;
+  border-radius: 24px !important;
   border: 1px solid color-mix(in srgb, var(--color-primary) 18%, var(--color-border-light)) !important;
   background:
-    radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 12%, white), transparent 58%),
+    radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 10%, white), transparent 58%),
+    radial-gradient(circle at bottom right, color-mix(in srgb, var(--color-surface-highlight) 28%, white), transparent 62%),
     var(--color-surface) !important;
   color: var(--color-text-primary) !important;
   box-shadow: var(--shadow-elevated-lg) !important;
   font-family: var(--font-primary) !important;
   font-size: var(--font-sm) !important;
   line-height: 1.5 !important;
+  backdrop-filter: blur(10px);
 }
 
 .success {
   border-color: color-mix(in srgb, var(--color-primary) 30%, var(--color-border-light)) !important;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 14%, white), transparent 56%),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-primary) 8%, white),
+      var(--color-surface-warm-alt)
+    ) !important;
 }
 
 .error {
   border-color: color-mix(in srgb, var(--color-danger-strong) 40%, var(--color-border-light)) !important;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--color-danger-strong) 14%, white), transparent 56%),
+    linear-gradient(
+      135deg,
+      var(--color-surface-danger-soft),
+      var(--color-surface-danger-subtle)
+    ) !important;
+}
+
+[data-theme='dark'] .toast {
+  border-color: color-mix(in srgb, var(--color-primary) 18%, var(--color-border-light)) !important;
+  background:
+    radial-gradient(
+      circle at top left,
+      color-mix(in srgb, var(--color-primary) 12%, var(--color-surface-strong)),
+      transparent 58%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface-strong) 88%, black),
+      color-mix(in srgb, var(--color-surface) 98%, black)
+    ) !important;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.04),
+    var(--shadow-elevated-lg) !important;
+}
+
+[data-theme='dark'] .success {
+  border-color: color-mix(in srgb, var(--color-primary) 28%, var(--color-border-light)) !important;
+  background:
+    radial-gradient(
+      circle at top left,
+      color-mix(in srgb, var(--color-primary) 16%, var(--color-surface-strong)),
+      transparent 56%
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-primary) 10%, var(--color-surface-strong)),
+      color-mix(in srgb, var(--color-surface-highlight) 20%, var(--color-surface))
+    ) !important;
+}
+
+[data-theme='dark'] .error {
+  border-color: color-mix(in srgb, var(--color-danger) 32%, var(--color-border-light)) !important;
+  background:
+    radial-gradient(
+      circle at top left,
+      color-mix(in srgb, var(--color-danger) 14%, var(--color-surface-strong)),
+      transparent 56%
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-surface-danger-soft) 88%, black),
+      color-mix(in srgb, var(--color-surface-danger-subtle) 94%, black)
+    ) !important;
 }
 
 @media screen and (max-width: 767px) {

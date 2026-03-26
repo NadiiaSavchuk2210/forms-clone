@@ -3,44 +3,87 @@
   top: 0;
   width: 100%;
   z-index: var(--z-header);
-  background-color: var(--header-bg);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--header-bg) 88%, white),
+      color-mix(in srgb, var(--header-bg) 96%, transparent)
+    );
   backdrop-filter: blur(var(--header-blur)) saturate(160%);
   -webkit-backdrop-filter: blur(var(--header-blur)) saturate(160%);
   border-bottom: 1px solid var(--header-border);
-
-  transition: all var(--transition-base);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--color-primary) 6%, transparent);
+  transition:
+    background var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
 .headerContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   height: 60px;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   text-decoration: none;
   color: var(--color-text-primary);
-  flex-shrink: 0;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
-.logo span {
+.logoMark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 14%, white),
+      color-mix(in srgb, var(--color-surface) 92%, transparent)
+    );
+  border: 1px solid color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-md);
+}
+
+.logoCopy {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.logoTitle {
   font-size: var(--font-base);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.logoTag {
+  color: var(--color-text-secondary);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: none;
 }
 
 .logoIcon {
-  height: 32px;
-  width: 32px;
+  height: 26px;
+  width: 26px;
+  color: var(--color-primary);
 }
 
-.createFormBtn {
-  padding: 5px;
+.actionBtn {
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,44 +92,207 @@
   font-weight: 700;
   font-size: 13px;
   text-transform: uppercase;
-  color: var(--color-surface);
-  min-width: 40px;
-  height: 40px;
-  background-color: var(--color-primary);
-  border: 2px solid var(--color-primary);
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
+  color: var(--color-text-primary);
+  min-width: 42px;
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 14%, white),
+      color-mix(in srgb, var(--color-surface) 96%, transparent)
+    );
+  border: 1px solid color-mix(in srgb, var(--color-primary) 18%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-md);
+  flex-shrink: 0;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast);
 }
 
-.createFormBtn:hover {
-  background-color: transparent;
+.actionBtn[data-variant='primary'],
+.actionBtn[data-variant='outline'] {
+  color: var(--color-text-primary);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 14%, white),
+      color-mix(in srgb, var(--color-surface) 96%, transparent)
+    );
+  border-color: color-mix(in srgb, var(--color-primary) 18%, var(--color-border-light));
+}
+
+.actionBtn[data-variant='primary'] .actionBtnText,
+.actionBtn[data-variant='outline'] .actionBtnText,
+.actionBtn[data-variant='primary'] svg,
+.actionBtn[data-variant='outline'] svg {
+  color: var(--color-text-primary);
+}
+
+.actionBtn:hover {
+  color: var(--color-primary);
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--color-primary) 32%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-lg);
+}
+
+.actionBtn[data-variant='primary']:hover,
+.actionBtn[data-variant='outline']:hover {
+  color: var(--color-primary);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 10%, white),
+      color-mix(in srgb, var(--color-surface) 98%, transparent)
+    );
+}
+
+.actionBtn[data-variant='primary']:hover .actionBtnText,
+.actionBtn[data-variant='outline']:hover .actionBtnText,
+.actionBtn[data-variant='primary']:hover svg,
+.actionBtn[data-variant='outline']:hover svg {
   color: var(--color-primary);
 }
 
-.createFormBtnText {
+.actionBtn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.actionBtnText {
   display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .headerContainer {
+    gap: 10px;
+  }
+
+  .logo {
+    gap: 8px;
+    flex: 0 1 auto;
+  }
+
+  .logoMark {
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+  }
+
+  .logoIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .logoCopy {
+    display: none;
+  }
+
+  .actionBtn {
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .headerContainer {
+    gap: 14px;
+  }
+
+  .logo {
+    gap: 10px;
+  }
+
+  .logoCopy {
+    display: block;
+  }
+
+  .logoTitle {
+    font-size: 0.92rem;
+    letter-spacing: 0.01em;
+  }
 }
 
 @media screen and (min-width: 768px) {
   .headerContainer {
     height: 80px;
+    gap: 20px;
+  }
+
+  .logoMark {
+    width: 48px;
+    height: 48px;
   }
 
   .logoIcon {
-    height: 40px;
+    height: 30px;
+    width: 30px;
   }
 
-  .logo span {
+  .logoTitle {
     font-size: var(--font-lg);
   }
 
-  .createFormBtn {
-    padding: 10px 20px;
-    min-width: auto;
-    height: auto;
+  .logoTag {
+    display: inline;
+    font-size: 0.72rem;
   }
 
-  .createFormBtnText {
+  .actionBtn {
+    width: auto;
+    min-width: auto;
+    height: 46px;
+    padding: 0 18px;
+    border-radius: 999px;
+  }
+
+  .actionBtnText {
     display: inline;
   }
+}
+
+[data-theme='dark'] .header {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--header-bg) 92%, black),
+      color-mix(in srgb, var(--header-bg) 98%, transparent)
+    );
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.28);
+}
+
+[data-theme='dark'] .logoMark,
+[data-theme='dark'] .actionBtn,
+[data-theme='dark'] .actionBtn[data-variant='primary'],
+[data-theme='dark'] .actionBtn[data-variant='outline'] {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 10%, var(--color-surface-strong)),
+      color-mix(in srgb, var(--color-surface) 96%, black)
+    );
+  border-color: color-mix(in srgb, var(--color-primary) 28%, var(--color-border-light));
+  box-shadow: var(--shadow-floating-md);
+}
+
+[data-theme='dark'] .logoTag {
+  color: var(--color-text-disabled);
+}
+
+[data-theme='dark'] .actionBtn:hover,
+[data-theme='dark'] .actionBtn[data-variant='primary']:hover,
+[data-theme='dark'] .actionBtn[data-variant='outline']:hover {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 16%, var(--color-surface-strong)),
+      color-mix(in srgb, var(--color-surface) 98%, black)
+    );
 }

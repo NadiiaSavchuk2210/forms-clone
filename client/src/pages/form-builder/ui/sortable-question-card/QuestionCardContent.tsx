@@ -70,13 +70,25 @@ const QuestionCardContent = ({
         </div>
 
         <div className={css.questionTools} aria-label={`Question ${index + 1} actions`}>
-          <Button variant="outline" onClick={handleMoveQuestionUp}>
+          <Button
+            variant="outline"
+            className={css.secondaryButton}
+            onClick={handleMoveQuestionUp}
+          >
             Move up
           </Button>
-          <Button variant="outline" onClick={handleMoveQuestionDown}>
+          <Button
+            variant="outline"
+            className={css.secondaryButton}
+            onClick={handleMoveQuestionDown}
+          >
             Move down
           </Button>
-          <Button variant="outline" onClick={handleRemoveQuestion}>
+          <Button
+            variant="outline"
+            className={css.secondaryButton}
+            onClick={handleRemoveQuestion}
+          >
             Remove
           </Button>
         </div>
@@ -122,6 +134,7 @@ const QuestionCardContent = ({
 
                 <Button
                   variant="outline"
+                  className={css.secondaryButton}
                   onClick={createRemoveOptionHandler(optionIndex)}
                 >
                   Remove
@@ -130,7 +143,11 @@ const QuestionCardContent = ({
             ))}
 
             <div className={css.optionControls}>
-              <Button variant="outline" onClick={handleAddOption}>
+              <Button
+                variant="outline"
+                className={css.secondaryButton}
+                onClick={handleAddOption}
+              >
                 Add option
               </Button>
               <span className={css.muted}>Keep at least two filled options.</span>

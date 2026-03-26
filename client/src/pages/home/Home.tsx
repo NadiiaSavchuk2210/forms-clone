@@ -10,6 +10,7 @@ import { useGetFormsQuery } from '@/entities/form/api';
 import { getErrorMessage } from '@/shared/lib/error-handler';
 import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
 import FormsList from '@/widgets/forms-list/FormsList';
+import FormsListSkeleton from '@/widgets/forms-list/FormsListSkeleton';
 import { useHomeDnd, useHomePagination } from './model';
 import { HomeHeader } from './ui';
 import css from './Home.module.css';
@@ -48,6 +49,18 @@ const Home = () => {
       <PageLayout className={css.homeContainer}>
         <HomeHeader formsCount={0} />
         <section className={css.collectionShell}>
+          <header className={css.collectionHeader}>
+            <div>
+              <h2 className={css.sectionTitle}>Your form collection</h2>
+              <p className={css.sectionText}>
+                Gathering the latest forms and arranging them for browsing.
+              </p>
+            </div>
+            <span className={css.sectionPill}>Loading</span>
+          </header>
+
+          <FormsListSkeleton />
+
           <ContentLoader label="Loading forms..." />
         </section>
       </PageLayout>
