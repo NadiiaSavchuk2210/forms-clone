@@ -14,10 +14,10 @@ import type { FormBuilderQuestionsModel, QuestionCardActions } from '../types';
 import css from './FormBuilderQuestions.module.css';
 import cardCss from '../sortable-question-card/SortableQuestionCard.module.css';
 
-type Props = {
+interface Props {
   model: FormBuilderQuestionsModel;
   actions: QuestionCardActions;
-};
+}
 
 const FormBuilderQuestions = ({ model, actions }: Props) => {
   const [activeQuestionId, setActiveQuestionId] = useState<string | null>(null);

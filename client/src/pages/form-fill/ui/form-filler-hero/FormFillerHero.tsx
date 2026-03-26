@@ -1,10 +1,10 @@
 import css from './FormFillerHero.module.css';
 
-type Props = {
+interface Props {
   title: string;
   description?: string | null;
   questionsCount: number;
-};
+}
 
 const FormFillerHero = ({
   title,

@@ -4,12 +4,12 @@ import type { SuccessLinks, SuccessState } from '../types';
 import type { ValidationError } from '@/shared/lib/validation';
 import css from './FormBuilderFeedback.module.css';
 
-type Props = {
+interface Props {
   validationErrors: ValidationError[];
   errorMessage: string | null;
   successState: SuccessState;
   successLinks: SuccessLinks;
-};
+}
 
 const FormBuilderFeedback = ({
   validationErrors,

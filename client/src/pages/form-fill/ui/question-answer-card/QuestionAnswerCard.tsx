@@ -1,5 +1,8 @@
 import { clsx } from 'clsx';
-import { QuestionType } from '@/shared/api/generated';
+import {
+  isDateQuestionType,
+  isTextQuestionType,
+} from '@/entities/form/model';
 import DatePickerField from '@/shared/ui/DatePickerField';
 import TextField from '@/shared/ui/TextField';
 import {
@@ -31,7 +34,7 @@ const QuestionAnswerCard = ({
         <p className={css.questionHint}>{typeHint}</p>
       </header>
 
-      {question.type === QuestionType.Text && (
+      {isTextQuestionType(question.type) && (
         <TextField
           label="Your answer"
           value={singleValue}
@@ -43,7 +46,7 @@ const QuestionAnswerCard = ({
         />
       )}
 
-      {question.type === QuestionType.Date && (
+      {isDateQuestionType(question.type) && (
         <DatePickerField
           label="Pick a date"
           value={singleValue}

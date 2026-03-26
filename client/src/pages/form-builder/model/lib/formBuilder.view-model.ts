@@ -1,7 +1,8 @@
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import type { AppDispatch } from '@/app/providers/store/store';
-import { QuestionType } from '@/shared/api/generated';
-import type { ValidationError } from '@/shared/lib/validation';
+import { getQuestionTypeHint } from '@/entities/form/model';
+import type { FormQuestionType } from '@/entities/form/model';
+import { getFirstFieldError } from '@/shared/lib/validation';
 import type { SensorDescriptor, SensorOptions } from '@dnd-kit/core';
 import {
   addQuestion,
@@ -17,8 +18,7 @@ import {
   updateQuestionTitle,
   updateQuestionType,
 } from '../slice/formBuilderSlice';
-import { getFirstFieldError } from './formBuilder.utils';
-import { QUESTION_TYPE_LABELS, QUESTION_TYPE_OPTIONS } from './constants';
+import { QUESTION_TYPE_LABELS, QUESTION_TYPE_OPTIONS } from '@/entities/form/model';
 import type {
   FormBuilderActions,
   FormBuilderFieldErrors,
@@ -27,17 +27,6 @@ import type {
   SuccessLinks,
   SuccessState,
 } from '../types';
-
-export const getVisibleValidationErrors = (
-  showValidationErrors: boolean,
-  validationErrors: ValidationError[],
-): ValidationError[] => {
-  if (!showValidationErrors) {
-    return [];
-  }
-
-  return validationErrors;
-};
 
 export const createSuccessLinks = (
   successState: SuccessState,
@@ -52,9 +41,6 @@ export const createSuccessLinks = (
   };
 };
 
-const getQuestionTypeHint = (type: QuestionType): string =>
-  QUESTION_TYPE_OPTIONS.find((option) => option.value === type)?.hint ?? '';
-
 export const createQuestionCardActions = (
   dispatch: AppDispatch,
 ): QuestionCardActions => {
@@ -64,7 +50,7 @@ export const createQuestionCardActions = (
     onRemoveQuestion: (id: string) => dispatch(removeQuestion(id)),
     onQuestionTitleChange: (id: string, value: string) =>
       dispatch(updateQuestionTitle({ id, title: value })),
-    onQuestionTypeChange: (id: string, value: QuestionType) =>
+    onQuestionTypeChange: (id: string, value: FormQuestionType) =>
       dispatch(updateQuestionType({ id, type: value })),
     onAddOption: (id: string) => dispatch(addQuestionOption(id)),
     onOptionChange: (id: string, optionIndex: number, value: string) =>
@@ -104,7 +90,7 @@ export const createFormBuilderActions = ({
         dispatch(setFormDescription(value)),
     },
     questionSection: {
-      onAddQuestion: (type: QuestionType) => dispatch(addQuestion(type)),
+      onAddQuestion: (type: FormQuestionType) => dispatch(addQuestion(type)),
     },
     questionCards: questionCardActions,
     save: {

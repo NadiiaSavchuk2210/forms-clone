@@ -1,6 +1,7 @@
 import Button from '@/shared/ui/Button';
 import TextField from '@/shared/ui/TextField';
-import { QuestionType } from '@/shared/api/generated';
+import { isChoiceQuestionType } from '@/entities/form/model';
+import type { FormQuestionType } from '@/entities/form/model';
 import QuestionTypeSelect from '../question-type-select';
 import type {
   FormBuilderViewModel,
@@ -9,16 +10,16 @@ import type {
 } from '../types';
 import css from './SortableQuestionCard.module.css';
 
-type Props = {
+interface Props extends QuestionCardActions {
   question: FormBuilderQuestionDraft;
   index: number;
   titleError: string | null;
   optionsError: string | null;
   questionTypeLabels: FormBuilderViewModel['questionTypeLabels'];
   questionTypeOptions: FormBuilderViewModel['questionTypeOptions'];
-  getQuestionTypeHint: (type: QuestionType) => string;
+  getQuestionTypeHint: (type: FormQuestionType) => string;
   dragHandle: React.ReactNode;
-} & QuestionCardActions;
+}
 
 const QuestionCardContent = ({
   question,
@@ -39,15 +40,13 @@ const QuestionCardContent = ({
   onAddOption,
 }: Props) => {
   const questionId = question.id;
-  const isChoiceQuestion =
-    question.type === QuestionType.MultipleChoice ||
-    question.type === QuestionType.Checkbox;
+  const isChoiceQuestion = isChoiceQuestionType(question.type);
   const handleMoveQuestionUp = () => onMoveQuestionUp(questionId);
   const handleMoveQuestionDown = () => onMoveQuestionDown(questionId);
   const handleRemoveQuestion = () => onRemoveQuestion(questionId);
   const handleQuestionTitleChange = (value: string) =>
     onQuestionTitleChange(questionId, value);
-  const handleQuestionTypeChange = (value: QuestionType) =>
+  const handleQuestionTypeChange = (value: FormQuestionType) =>
     onQuestionTypeChange(questionId, value);
   const handleAddOption = () => onAddOption(questionId);
   const createOptionChangeHandler =

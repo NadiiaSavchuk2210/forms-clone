@@ -1,7 +1,11 @@
+import type { FormQuestionType } from '@/entities/form/model';
+
 export interface ValidationError {
   field: string;
   message: string;
 }
+
+export type ValidationErrorMap = Record<string, string[]>;
 
 export interface DraftQuestionData {
   id?: string;
@@ -19,7 +23,7 @@ export interface FormDraftData {
 export interface SubmittedQuestionData {
   id: string;
   title: string;
-  type: string;
+  type: FormQuestionType;
 }
 
 export type QuestionAnswerValue = string | string[];

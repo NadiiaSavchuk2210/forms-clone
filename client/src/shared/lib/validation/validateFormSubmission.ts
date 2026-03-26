@@ -1,4 +1,8 @@
-import { QuestionType } from '@/shared/api/generated';
+import {
+  isDateQuestionType,
+  isSingleChoiceQuestionType,
+  isTextQuestionType,
+} from '@/entities/form/model';
 import type {
   SubmittedAnswerData,
   SubmittedQuestionData,
@@ -35,7 +39,7 @@ const validateTextOrDateAnswer = (
     return createRequiredError(question);
   }
 
-  if (question.type === QuestionType.Date && !isValidDate(answerValue)) {
+  if (isDateQuestionType(question.type) && !isValidDate(answerValue)) {
     return {
       field: question.id,
       message: `"${question.title}" must be a valid date`,
@@ -49,7 +53,7 @@ const validateSingleChoiceAnswer = (
   question: SubmittedQuestionData,
   value: string[],
 ): ValidationError | null => {
-  if (question.type !== QuestionType.MultipleChoice || value.length === 1) {
+  if (!isSingleChoiceQuestionType(question.type) || value.length === 1) {
     return null;
   }
 
@@ -82,10 +86,7 @@ export const validateFormSubmission = (
       return;
     }
 
-    if (
-      question.type === QuestionType.Text ||
-      question.type === QuestionType.Date
-    ) {
+    if (isTextQuestionType(question.type) || isDateQuestionType(question.type)) {
       const textOrDateError = validateTextOrDateAnswer(question, value);
 
       if (textOrDateError) {

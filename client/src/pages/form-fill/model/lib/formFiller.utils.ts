@@ -1,5 +1,5 @@
-import { type AnswerInput, type GetFormQuery, QuestionType } from '@/shared/api/generated';
-import type { ValidationError } from '@/shared/lib/validation';
+import { getQuestionTypeHint } from '@/entities/form/model';
+import { type AnswerInput, type GetFormQuery } from '@/shared/api/generated';
 import type {
   FormFillerActions,
   FormFillerQuestionsModel,
@@ -52,30 +52,6 @@ export const toggleAnswerOption = (
   };
 };
 
-export const buildValidationErrorMap = (
-  errors: ValidationError[],
-): Record<string, string[]> =>
-  errors.reduce<Record<string, string[]>>((acc, error) => {
-    acc[error.field] = [...(acc[error.field] ?? []), error.message];
-    return acc;
-  }, {});
-
-export const getFirstFieldError = (
-  errorMap: Record<string, string[]>,
-  field: string,
-): string | null => errorMap[field]?.[0] ?? null;
-
-export const getVisibleValidationErrors = (
-  shouldShowErrors: boolean,
-  validationErrors: ValidationError[],
-): ValidationError[] => {
-  if (!shouldShowErrors) {
-    return [];
-  }
-
-  return validationErrors;
-};
-
 export const createQuestionFieldActions = (
   onSetSingleValue: (questionId: string, value: string) => void,
   onToggleCheckboxValue: (questionId: string, option: string) => void,
@@ -108,19 +84,3 @@ export const createQuestionsModel = (
   getQuestionError,
   getQuestionTypeHint,
 });
-
-export const getQuestionTypeHint = (type: QuestionType): string => {
-  if (type === QuestionType.Text) {
-    return 'Respondents can type a short or long answer.';
-  }
-
-  if (type === QuestionType.MultipleChoice) {
-    return 'Pick one option from the list.';
-  }
-
-  if (type === QuestionType.Checkbox) {
-    return 'Choose one or more options.';
-  }
-
-  return 'Select a date from the calendar.';
-};

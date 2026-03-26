@@ -1,17 +1,10 @@
-import { type QuestionInput, QuestionType } from '@/shared/api/generated';
+import {
+  isChoiceQuestionType,
+  normalizeQuestionOptions,
+} from '@/entities/form/model';
+import type { QuestionInput } from '@/shared/api/generated';
 import type { ValidationError } from '@/shared/lib/validation';
 import type { FormBuilderQuestionDraft } from '../slice/formBuilderSlice';
-import type { FormBuilderFieldErrors } from '../types';
-
-const isChoiceQuestion = (type: QuestionType): boolean => {
-  return (
-    type === QuestionType.MultipleChoice || type === QuestionType.Checkbox
-  );
-};
-
-export const normalizeOptions = (options: string[]): string[] => {
-  return options.map((option) => option.trim()).filter(Boolean);
-};
 
 export const buildQuestionInput = (
   question: FormBuilderQuestionDraft,
@@ -19,7 +12,7 @@ export const buildQuestionInput = (
   return {
     title: question.title.trim(),
     type: question.type,
-    options: normalizeOptions(question.options),
+    options: normalizeQuestionOptions(question.options),
   };
 };
 
@@ -29,11 +22,11 @@ export const getChoiceQuestionsErrors = (
   const errors: ValidationError[] = [];
 
   questions.forEach((question, index) => {
-    if (!isChoiceQuestion(question.type)) {
+    if (!isChoiceQuestionType(question.type)) {
       return;
     }
 
-    const normalizedOptions = normalizeOptions(question.options);
+    const normalizedOptions = normalizeQuestionOptions(question.options);
 
     if (normalizedOptions.length < 2) {
       errors.push({
@@ -51,20 +44,4 @@ export const getChoiceQuestionsErrors = (
   });
 
   return errors;
-};
-
-export const buildValidationErrorMap = (
-  errors: ValidationError[],
-): FormBuilderFieldErrors => {
-  return errors.reduce<FormBuilderFieldErrors>((acc, error) => {
-    acc[error.field] = [...(acc[error.field] ?? []), error.message];
-    return acc;
-  }, {});
-};
-
-export const getFirstFieldError = (
-  errorMap: FormBuilderFieldErrors,
-  field: string,
-): string | null => {
-  return errorMap[field]?.[0] ?? null;
 };

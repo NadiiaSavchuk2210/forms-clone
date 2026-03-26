@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { isChoiceQuestionType } from '@/entities/form/model';
 import { QuestionType } from '@/shared/api/generated';
 import { loadFormBuilderDraft } from '../lib/formBuilder.storage';
 
@@ -29,10 +30,7 @@ const createQuestionDraft = (
   id: createId(),
   title: '',
   type,
-  options:
-    type === QuestionType.MultipleChoice || type === QuestionType.Checkbox
-      ? ['', '']
-      : [],
+  options: isChoiceQuestionType(type) ? ['', ''] : [],
 });
 
 const createInitialState = (): FormBuilderState => ({
@@ -42,10 +40,7 @@ const createInitialState = (): FormBuilderState => ({
 });
 
 const ensureOptions = (type: QuestionType, options: string[]): string[] => {
-  const isChoiceType =
-    type === QuestionType.MultipleChoice || type === QuestionType.Checkbox;
-
-  if (!isChoiceType) {
+  if (!isChoiceQuestionType(type)) {
     return [];
   }
 

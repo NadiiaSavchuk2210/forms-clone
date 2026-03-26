@@ -8,24 +8,26 @@ import {
 } from '@dnd-kit/core';
 import { useAppDispatch, useAppSelector } from '@/app/providers/store/hooks';
 import { useCreateFormMutation } from '@/entities/form/api';
+import { QUESTION_TYPE_LABELS, QUESTION_TYPE_OPTIONS } from '@/entities/form/model';
 import type { CreateFormMutation } from '@/shared/api/generated';
 import { getUserFriendlyError } from '@/shared/lib/error-handler';
-import { validateFormData } from '@/shared/lib/validation';
+import {
+  buildValidationErrorMap,
+  getFirstFieldError,
+  getVisibleValidationErrors,
+  validateFormData,
+} from '@/shared/lib/validation';
 import { reorderQuestions, resetFormBuilder } from '../slice/formBuilderSlice';
 import {
   buildQuestionInput,
-  buildValidationErrorMap,
   getChoiceQuestionsErrors,
-  getFirstFieldError,
 } from '../lib/formBuilder.utils';
 import {
   createFormBuilderActions,
   createFormBuilderQuestionsModel,
   createQuestionCardActions,
   createSuccessLinks,
-  getVisibleValidationErrors,
 } from '../lib/formBuilder.view-model';
-import { QUESTION_TYPE_LABELS, QUESTION_TYPE_OPTIONS } from '../lib/constants';
 import type { SuccessState } from '../types';
 
 export const useFormBuilder = () => {

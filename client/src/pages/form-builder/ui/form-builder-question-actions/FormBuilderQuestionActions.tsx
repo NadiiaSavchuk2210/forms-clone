@@ -2,11 +2,11 @@ import Button from '@/shared/ui/Button';
 import type { QuestionTypeOption } from '../types';
 import css from './FormBuilderQuestionActions.module.css';
 
-type Props = {
+interface Props {
   questionTypeOptions: readonly QuestionTypeOption[];
   errorMessage: string | null;
   onAddQuestion: (type: QuestionTypeOption['value']) => void;
-};
+}
 
 const FormBuilderQuestionActions = ({
   questionTypeOptions,

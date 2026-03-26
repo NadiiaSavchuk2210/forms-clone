@@ -3,7 +3,8 @@ import type {
   FormBuilderQuestionDraft,
   FormBuilderState,
 } from '../slice/formBuilderSlice';
-import { FORM_BUILDER_STORAGE_KEY } from './constants';
+
+const FORM_BUILDER_STORAGE_KEY = 'forms-clone:form-builder-draft';
 
 const isQuestionType = (value: unknown): value is QuestionType =>
   Object.values(QuestionType).includes(value as QuestionType);

@@ -1,4 +1,4 @@
-import { QuestionType } from '@/shared/api/generated';
+import type { FormQuestionType, QuestionTypeOption } from '@/entities/form/model';
 import type { ValidationError } from '@/shared/lib/validation';
 import type {
   DragEndEvent,
@@ -8,14 +8,9 @@ import type {
 import type { FormBuilderQuestionDraft } from './slice/formBuilderSlice';
 
 export type { FormBuilderQuestionDraft };
+export type { QuestionTypeOption };
 
-export type QuestionTypeOption = {
-  value: QuestionType;
-  label: string;
-  hint: string;
-};
-
-export type QuestionTypeLabels = Record<QuestionType, string>;
+export type QuestionTypeLabels = Record<FormQuestionType, string>;
 
 export type FormBuilderFieldErrors = Record<string, string[]>;
 
@@ -34,7 +29,7 @@ export type QuestionCardActions = {
   onMoveQuestionDown: (id: string) => void;
   onRemoveQuestion: (id: string) => void;
   onQuestionTitleChange: (id: string, value: string) => void;
-  onQuestionTypeChange: (id: string, value: QuestionType) => void;
+  onQuestionTypeChange: (id: string, value: FormQuestionType) => void;
   onOptionChange: (id: string, optionIndex: number, value: string) => void;
   onRemoveOption: (id: string, optionIndex: number) => void;
   onAddOption: (id: string) => void;
@@ -46,7 +41,7 @@ export type FormBuilderActions = {
     onDescriptionChange: (value: string) => void;
   };
   questionSection: {
-    onAddQuestion: (type: QuestionType) => void;
+    onAddQuestion: (type: FormQuestionType) => void;
   };
   questionCards: QuestionCardActions;
   save: {
@@ -60,7 +55,7 @@ export type FormBuilderQuestionsModel = {
   questions: FormBuilderQuestionDraft[];
   questionTypeLabels: QuestionTypeLabels;
   questionTypeOptions: readonly QuestionTypeOption[];
-  getQuestionTypeHint: (type: QuestionType) => string;
+  getQuestionTypeHint: (type: FormQuestionType) => string;
   getQuestionTitleError: (questionId: string) => string | null;
   getQuestionOptionsError: (questionId: string) => string | null;
   onDragEnd: (event: DragEndEvent) => void;

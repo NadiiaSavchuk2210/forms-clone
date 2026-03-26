@@ -2,11 +2,11 @@ import { clsx } from 'clsx';
 import Button from '@/shared/ui/Button';
 import css from './FormBuilderSavePanel.module.css';
 
-type Props = {
+interface Props {
   isSaving: boolean;
   onSubmit: () => void;
   onReset: () => void;
-};
+}
 
 const FormBuilderSavePanel = ({
   isSaving,

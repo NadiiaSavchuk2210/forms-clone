@@ -1,14 +1,14 @@
 import TextField from '@/shared/ui/TextField';
 import css from './FormBuilderSetup.module.css';
 
-type Props = {
+interface Props {
   title: string;
   description: string;
   titleError: string | null;
   descriptionError: string | null;
   onTitleChange: (value: string) => void;
   onDescriptionChange: (value: string) => void;
-};
+}
 
 const FormBuilderSetup = ({
   title,

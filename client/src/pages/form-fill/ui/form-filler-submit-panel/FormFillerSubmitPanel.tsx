@@ -2,11 +2,11 @@ import { clsx } from 'clsx';
 import Button from '@/shared/ui/Button';
 import css from './FormFillerSubmitPanel.module.css';
 
-type Props = {
+interface Props {
   isSubmitting: boolean;
   onSubmit: () => void;
   onReset: () => void;
-};
+}
 
 const FormFillerSubmitPanel = ({
   isSubmitting,
