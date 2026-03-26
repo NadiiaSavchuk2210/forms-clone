@@ -1,1 +1,2 @@
-export { useHomePagination } from './useHomePagination';
+export { useHomePagination } from './hooks/useHomePagination';
+export { useHomeDnd } from './hooks/useHomeDnd';

@@ -5,7 +5,7 @@ import type {
   SensorDescriptor,
   SensorOptions,
 } from '@dnd-kit/core';
-import type { FormBuilderQuestionDraft } from './formBuilderSlice';
+import type { FormBuilderQuestionDraft } from './slice/formBuilderSlice';
 
 export type { FormBuilderQuestionDraft };
 

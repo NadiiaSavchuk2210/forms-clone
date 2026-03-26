@@ -4,12 +4,11 @@ import Button from '@/shared/ui/Button';
 import ContentLoader from '@/shared/ui/ContentLoader';
 import EmptyState from '@/shared/ui/EmptyState';
 import Pagination from '@/shared/ui/Pagination';
-import { useGetFormsQuery } from '@/shared/api/queries/forms';
+import { useGetFormsQuery } from '@/entities/form/api';
 import { getErrorMessage } from '@/shared/lib/error-handler';
 import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
-import { useHomeDnd } from '@/shared/hooks/useHomeDnd';
 import FormsList from '@/widgets/forms-list/FormsList';
-import { useHomePagination } from './model';
+import { useHomeDnd, useHomePagination } from './model';
 import { HomeHeader } from './ui';
 import css from './Home.module.css';
 import { clsx } from 'clsx';
@@ -46,8 +45,10 @@ const Home = () => {
   if (isLoading) {
     return (
       <main className={clsx('container', css.homeContainer)}>
-        <HomeHeader />
-        <ContentLoader label="Loading forms..." />
+        <HomeHeader formsCount={0} />
+        <section className={css.collectionShell}>
+          <ContentLoader label="Loading forms..." />
+        </section>
       </main>
     );
   }
@@ -55,6 +56,7 @@ const Home = () => {
   if (isError) {
     return (
       <main className={clsx('container', css.homeContainer)}>
+        <HomeHeader formsCount={0} />
         <section className={css.errorContainer}>
           <h2>Failed to load forms</h2>
           <p>{getErrorMessage(error)}</p>
@@ -66,14 +68,27 @@ const Home = () => {
 
   return (
     <main className={clsx('container', css.homeContainer)}>
-      <HomeHeader />
+      <HomeHeader formsCount={draggableForms.length} />
 
       {draggableForms.length === 0 ? (
-        <section>
+        <section className={clsx(css.collectionShell, css.emptyShell)}>
           <EmptyState variant="forms" />
         </section>
       ) : (
-        <>
+        <section className={css.collectionShell}>
+          <header className={css.collectionHeader}>
+            <div>
+              <h2 className={css.sectionTitle}>Your form collection</h2>
+              <p className={css.sectionText}>
+                Browse what is ready, reshuffle the card order, and move between
+                fill and response views.
+              </p>
+            </div>
+            <span className={css.sectionPill}>
+              {visibleItems.length} on this page
+            </span>
+          </header>
+
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
@@ -88,7 +103,7 @@ const Home = () => {
             onPrevious={goToPreviousPage}
             onNext={goToNextPage}
           />
-        </>
+        </section>
       )}
     </main>
   );

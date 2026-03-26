@@ -2,7 +2,7 @@ import { QuestionType } from '@/shared/api/generated';
 import type {
   FormBuilderQuestionDraft,
   FormBuilderState,
-} from './formBuilderSlice';
+} from '../slice/formBuilderSlice';
 import { FORM_BUILDER_STORAGE_KEY } from './constants';
 
 const isQuestionType = (value: unknown): value is QuestionType =>

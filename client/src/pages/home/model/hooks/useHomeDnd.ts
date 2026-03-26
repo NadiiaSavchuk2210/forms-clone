@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
-  useSensors,
-  useSensor,
-  PointerSensor,
   DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
 } from '@dnd-kit/core';
-import { reorderItems } from '@/shared/lib/dnd/reorder';
 import type { GetFormsQuery } from '@/shared/api/generated';
+import { reorderItems } from '@/shared/lib/dnd/reorder';
 
 type HomeForm = GetFormsQuery['forms'][number];
 

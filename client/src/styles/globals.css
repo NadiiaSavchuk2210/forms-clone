@@ -10,7 +10,17 @@ body {
   font-weight: 400;
   line-height: 1.25;
   color: var(--color-text-primary);
-  background-color: var(--color-gray-surface);
+  background:
+    radial-gradient(
+      circle at top left,
+      color-mix(in srgb, var(--color-primary) 10%, white),
+      transparent 26%
+    ),
+    linear-gradient(
+      180deg,
+      var(--color-surface-warm-muted) 0%,
+      var(--color-gray-surface) 24%
+    );
   transition: color var(--transition-base);
 }
 
@@ -18,14 +28,24 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-color: var(--color-gray-surface);
+  background:
+    radial-gradient(
+      circle at top left,
+      color-mix(in srgb, var(--color-primary) 9%, white),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      var(--color-surface-warm-muted) 0%,
+      var(--color-gray-surface) 24%
+    );
   z-index: -1;
-  transition: background-color var(--transition-base);
+  transition: background var(--transition-base);
 }
 
 main {
   min-height: calc(100vh - 96px);
-  background-color: var(--color-gray-surface);
+  background-color: transparent;
 }
 
 button {

@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { QuestionType } from '@/shared/api/generated';
-import { loadFormBuilderDraft } from './formBuilder.storage';
+import { loadFormBuilderDraft } from '../lib/formBuilder.storage';
 
 export interface FormBuilderQuestionDraft {
   id: string;
