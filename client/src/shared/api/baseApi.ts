@@ -7,7 +7,7 @@ import type {
   GraphQLError,
   GraphQLRequest,
   GraphQLResponse,
-} from './types/api-types';
+} from './types';
 
 const rawBaseQuery = fetchBaseQuery({
   baseUrl: API_BASE_URL,

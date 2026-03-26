@@ -1,7 +1,12 @@
 .card {
-  background-color: var(--color-surface);
-  border: 2px solid var(--header-border);
-  border-radius: var(--radius-md);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 5%, white),
+      var(--color-surface)
+    );
+  border: 1px solid color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  border-radius: 28px;
   padding: 24px;
 
   display: flex;
@@ -13,12 +18,14 @@
   gap: 16px;
   transition:
     border-color var(--transition-base),
-    transform var(--transition-base);
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
 }
+
 .card:hover {
   border-color: var(--color-primary);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-elevated-soft);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-elevated-md);
 }
 
 .cardHeader {
@@ -32,51 +39,66 @@
 .cardContent {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   flex: 1;
 }
 
 .dragHandle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: grab;
   color: var(--color-text-disabled);
-  padding: 4px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--color-primary) 8%, white);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 18%, var(--color-border-light));
   transition: color var(--transition-fast);
 }
 
 .dragHandle:hover {
-  color: var(--color-text-secondary);
+  color: var(--color-primary);
 }
 
 .dragHandle:active {
   cursor: grabbing;
 }
 
+.formMeta {
+  margin: 0;
+  font-size: var(--font-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
 .formTitle {
-  font-size: var(--font-lg);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
   font-weight: 800;
   text-transform: uppercase;
   color: var(--color-text-primary);
   margin: 0;
+  letter-spacing: -0.04em;
 }
 
 .formDescription {
   font-size: var(--font-sm);
   color: var(--color-text-secondary);
   line-height: 1.5;
+  min-height: 3em;
 
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
 .cardActions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 
   margin-top: auto;
-}
-
-.cardActions {
-  flex: 0 1 auto;
-  min-width: 130px;
 }

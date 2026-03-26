@@ -1,4 +1,4 @@
-export { useFormBuilder } from './useFormBuilder';
+export { useFormBuilder } from './hooks/useFormBuilder';
 export type {
   FormBuilderActions,
   FormBuilderQuestionDraft,

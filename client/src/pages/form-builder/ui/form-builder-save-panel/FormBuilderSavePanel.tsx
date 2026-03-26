@@ -17,7 +17,7 @@ const FormBuilderSavePanel = ({
     <section className={clsx(css.actionsCard, css.saveCard)} aria-labelledby="form-builder-save-title">
       <h2 className={css.sectionTitle}>Save form</h2>
       <p className={css.sectionText}>
-        When everything looks right, send the draft to the GraphQL API.
+        When everything looks right, save the form and get it ready to share.
       </p>
 
       <div className={css.actionRow}>

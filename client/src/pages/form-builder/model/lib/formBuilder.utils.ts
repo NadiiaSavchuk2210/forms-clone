@@ -1,6 +1,6 @@
 import { type QuestionInput, QuestionType } from '@/shared/api/generated';
 import type { ValidationError } from '@/shared/lib/validators';
-import type { FormBuilderQuestionDraft } from './formBuilderSlice';
+import type { FormBuilderQuestionDraft } from '../slice/formBuilderSlice';
 
 export const normalizeOptions = (options: string[]) =>
   options.map((option) => option.trim()).filter(Boolean);

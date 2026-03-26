@@ -32,11 +32,15 @@ const FormCard = ({ form }: FormCardProps) => {
     opacity: isDragging ? 0.6 : 1,
     zIndex: isDragging ? 2 : 1,
   };
+  const questionCount = form.questions.length;
 
   return (
     <li ref={setNodeRef} role="listitem" style={style} className={styles.card}>
       <div className={styles.cardHeader}>
         <div className={styles.cardContent}>
+          <p className={styles.formMeta}>
+            {questionCount} question{questionCount === 1 ? '' : 's'}
+          </p>
           <h2 className={styles.formTitle}>{form.title}</h2>
           <p className={styles.formDescription}>
             {form.description || 'No description provided yet.'}
