@@ -1,3 +1,4 @@
+import { isValidDate } from './date';
 import type { ValidationError } from './validation/types';
 
 export type {
@@ -8,7 +9,7 @@ export type {
   SubmittedQuestionData,
   ValidationError,
 } from './validation/types';
-export { isValidDate } from './validation/utils';
+export { isValidDate } from './date';
 export { validateFormData } from './validation/validateFormData';
 export { validateFormSubmission } from './validation/validateFormSubmission';
 
@@ -55,7 +56,7 @@ export const formValidators = {
     value: string | undefined,
     fieldName: string = 'Date',
   ): ValidationError | null => {
-    if (value && isNaN(Date.parse(value))) {
+    if (value && !isValidDate(value)) {
       return { field: fieldName, message: 'Please enter a valid date' };
     }
     return null;

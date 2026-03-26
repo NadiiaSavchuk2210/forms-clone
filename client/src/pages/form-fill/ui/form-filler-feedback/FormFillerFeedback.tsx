@@ -3,11 +3,11 @@ import type { ValidationError } from '@/shared/lib/validation';
 import type { SubmitSuccessState } from '../../model';
 import css from './FormFillerFeedback.module.css';
 
-type Props = {
+interface Props {
   validationErrors: ValidationError[];
   errorMessage: string | null;
   successState: SubmitSuccessState;
-};
+}
 
 const FormFillerFeedback = ({
   validationErrors,

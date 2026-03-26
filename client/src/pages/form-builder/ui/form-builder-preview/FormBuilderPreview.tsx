@@ -1,11 +1,17 @@
-import { QuestionType } from '@/shared/api/generated';
+import {
+  isCheckboxQuestionType,
+  isDateQuestionType,
+  isSingleChoiceQuestionType,
+  isTextQuestionType,
+  normalizeQuestionOptions,
+} from '@/entities/form/model';
 import type { FormBuilderViewModel } from '../types';
 import css from './FormBuilderPreview.module.css';
 
-type Props = {
+interface Props {
   questions: FormBuilderViewModel['questions'];
   questionTypeLabels: FormBuilderViewModel['questionTypeLabels'];
-};
+}
 
 const FormBuilderPreview = ({
   questions,
@@ -24,9 +30,7 @@ const FormBuilderPreview = ({
 
       <ol className={css.previewStack}>
         {questions.map((question) => {
-          const normalizedOptions = question.options
-            .map((option) => option.trim())
-            .filter(Boolean);
+          const normalizedOptions = normalizeQuestionOptions(question.options);
 
           return (
             <li key={question.id} className={css.previewQuestion}>
@@ -34,17 +38,17 @@ const FormBuilderPreview = ({
                 {question.title || 'Untitled question'}
               </h3>
 
-              {question.type === QuestionType.Text && (
+              {isTextQuestionType(question.type) && (
                 <div className={css.fakeInput} aria-hidden="true" />
               )}
 
-              {question.type === QuestionType.Date && (
+              {isDateQuestionType(question.type) && (
                 <div className={css.fakeDate} aria-hidden="true">
                   Choose a date
                 </div>
               )}
 
-              {question.type === QuestionType.MultipleChoice && (
+              {isSingleChoiceQuestionType(question.type) && (
                 <div className={css.choiceList}>
                   {(normalizedOptions.length > 0
                     ? normalizedOptions
@@ -58,7 +62,7 @@ const FormBuilderPreview = ({
                 </div>
               )}
 
-              {question.type === QuestionType.Checkbox && (
+              {isCheckboxQuestionType(question.type) && (
                 <div className={css.choiceList}>
                   {(normalizedOptions.length > 0
                     ? normalizedOptions

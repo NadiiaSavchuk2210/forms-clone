@@ -1,0 +1,214 @@
+.responsesPage {
+  position: relative;
+  isolation: isolate;
+  padding-top: 32px;
+  padding-bottom: 56px;
+  overflow-x: clip;
+}
+
+.responsesPage::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at top left, var(--color-primary-soft), transparent 28%),
+    linear-gradient(
+      180deg,
+      var(--color-surface-warm-muted) 0%,
+      var(--color-gray-surface) 24%
+    );
+  pointer-events: none;
+}
+
+.responsesGrid {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.summarySection {
+  margin-bottom: 24px;
+}
+
+.contentStack {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.sidebar {
+  display: none;
+  min-width: 0;
+}
+
+.panel {
+  background: var(--color-surface);
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-md);
+  padding: 22px 20px;
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+.sectionHeader {
+  display: grid;
+  gap: 6px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.sectionText {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+}
+
+.responseStack {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.mobileSummary {
+  display: block;
+  margin-top: 20px;
+  min-width: 0;
+}
+
+.emptyStatePanel {
+  display: grid;
+  gap: 18px;
+}
+
+.emptyActions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.errorShell {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-danger) 10%, white),
+      color-mix(in srgb, var(--color-surface) 98%, transparent)
+    );
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--color-danger) 22%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-md);
+  padding: 28px 22px;
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.errorEyebrow {
+  display: inline-flex;
+  justify-self: start;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-danger) 10%, white);
+  color: var(--color-danger);
+  font-size: var(--font-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.errorTitle {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.errorText {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.errorActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .responsesPage {
+    padding-top: 40px;
+    padding-bottom: 56px;
+  }
+
+  .panel {
+    padding: 24px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .sectionTitle {
+    font-size: clamp(1.25rem, 8vw, 1.65rem);
+  }
+
+  .emptyActions,
+  .errorActions {
+    flex-direction: column;
+  }
+
+  .emptyActions > *,
+  .errorActions > * {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .panel {
+    padding: 18px 16px;
+    border-radius: 22px;
+  }
+
+  .errorShell {
+    padding: 22px 18px;
+    border-radius: 22px;
+  }
+}
+
+@media screen and (min-width: 1158px) {
+  .responsesGrid {
+    grid-template-columns: minmax(0, 1.48fr) minmax(260px, 0.62fr);
+    align-items: start;
+  }
+
+  .sidebar {
+    display: block;
+    position: sticky;
+    top: 106px;
+  }
+
+  .mobileSummary {
+    display: none;
+  }
+}
+
+[data-theme='dark'] .errorShell {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-danger) 12%, black),
+      color-mix(in srgb, var(--color-surface-strong) 90%, black)
+    );
+}
+
+[data-theme='dark'] .errorEyebrow {
+  background: color-mix(in srgb, var(--color-danger) 12%, transparent);
+}

@@ -11,7 +11,7 @@ import type {
 } from '../types';
 import css from './SortableQuestionCard.module.css';
 
-type Props = {
+interface Props extends QuestionCardActions {
   question: FormBuilderQuestionDraft;
   index: number;
   titleError: string | null;
@@ -19,7 +19,7 @@ type Props = {
   questionTypeLabels: FormBuilderViewModel['questionTypeLabels'];
   questionTypeOptions: FormBuilderViewModel['questionTypeOptions'];
   getQuestionTypeHint: (type: QuestionType) => string;
-} & QuestionCardActions;
+}
 
 const SortableQuestionCard = ({
   question,

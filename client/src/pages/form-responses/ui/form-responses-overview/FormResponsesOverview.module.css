@@ -1,0 +1,505 @@
+.overviewCard {
+  --responses-accent-ink: color-mix(in srgb, var(--color-primary) 58%, var(--color-text-primary));
+  display: grid;
+  gap: 16px;
+  padding: 22px 20px;
+  border-radius: 26px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface) 99%, white),
+      color-mix(in srgb, var(--color-surface-warm-soft) 88%, white)
+    );
+  border: 1px solid color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-md);
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-base),
+    transform var(--transition-base);
+  min-width: 0;
+}
+
+.overviewHeader {
+  display: grid;
+  gap: 6px;
+}
+
+.eyebrow {
+  color: var(--responses-accent-ink);
+  font-size: var(--font-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.text {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  font-size: var(--font-sm);
+}
+
+.tableWrapper {
+  overflow: visible;
+  border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 12%, var(--color-border-light));
+  background: color-mix(in srgb, var(--color-surface) 99%, white);
+  position: relative;
+  z-index: 0;
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-base);
+  min-width: 0;
+}
+
+.tableScroller {
+  overflow-x: auto;
+  padding-bottom: 6px;
+  border-radius: inherit;
+  clip-path: inset(0 round 24px);
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--color-primary) 36%, transparent)
+    color-mix(in srgb, var(--color-primary) 8%, transparent);
+  max-width: 100%;
+}
+
+.tableScroller::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tableScroller::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  border-radius: 999px;
+}
+
+.tableScroller::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 8%, transparent);
+  border-radius: 999px;
+}
+
+.table {
+  width: 100%;
+  min-width: 46rem;
+  border-collapse: collapse;
+  position: relative;
+  z-index: 0;
+}
+
+.table thead {
+  position: relative;
+  z-index: 1;
+}
+
+.table tbody {
+  position: relative;
+  z-index: 2;
+}
+
+.table thead th {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: var(--font-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--responses-accent-ink);
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface-warm-soft));
+  border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 12%, var(--color-border-light));
+  transition:
+    background var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base);
+}
+
+.table tbody th,
+.table tbody td {
+  padding: 16px 18px;
+  vertical-align: top;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 10%, var(--color-border-light));
+  transition: border-color var(--transition-base);
+}
+
+.table tbody tr {
+  position: relative;
+  z-index: 0;
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.questionTitle {
+  min-width: 16rem;
+  text-align: left;
+  display: grid;
+  gap: 4px;
+  font-size: var(--font-sm);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.questionHint {
+  color: var(--color-text-secondary);
+  font-size: var(--font-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.numericValue {
+  color: var(--color-text-primary);
+  font-size: var(--font-sm);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.answerCell {
+  min-width: 16rem;
+}
+
+.answerList {
+  display: grid;
+  gap: 8px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.answerItem {
+  position: relative;
+  z-index: 0;
+}
+
+.answerItem:hover,
+.answerItem:focus-within {
+  z-index: 6;
+}
+
+.answerTrigger {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--color-primary) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 10%, var(--color-border-light));
+  cursor: pointer;
+  outline: none;
+  min-width: 0;
+  color: inherit;
+  text-align: left;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease,
+    filter 160ms ease;
+}
+
+.answerTrigger:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--color-primary) 7%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 20%, var(--color-border-light));
+  box-shadow: var(--shadow-card-hover);
+  filter: saturate(1.05);
+}
+
+.answerTrigger:focus-visible {
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent),
+    var(--shadow-elevated-soft);
+}
+
+.answerValue {
+  color: var(--color-text-primary);
+  font-size: var(--font-sm);
+  font-weight: 700;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.answerMeta {
+  color: var(--color-text-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  z-index: 12;
+  min-width: 14rem;
+  max-width: 20rem;
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface) 98%, white),
+      color-mix(in srgb, var(--color-surface-strong) 98%, white)
+    );
+  border: 1px solid color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-6px, -50%);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease,
+    visibility 160ms ease;
+  pointer-events: none;
+}
+
+.answerTrigger:hover .tooltip,
+.answerTrigger:focus-visible .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, -50%);
+}
+
+.tooltipTitle {
+  color: var(--responses-accent-ink);
+  font-size: var(--font-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tooltipList {
+  display: grid;
+  gap: 8px;
+}
+
+.tooltipItem {
+  display: grid;
+  gap: 2px;
+}
+
+.tooltipResponseTitle {
+  color: var(--color-text-primary);
+  font-size: var(--font-sm);
+  font-weight: 700;
+}
+
+.tooltipResponseId {
+  color: var(--color-text-secondary);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  word-break: break-all;
+}
+
+.emptyAnswer {
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+  overflow-wrap: anywhere;
+}
+
+[data-theme='dark'] .overviewCard {
+  --responses-accent-ink: var(--color-accent);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface-strong) 88%, black),
+      color-mix(in srgb, var(--color-surface) 96%, black)
+    );
+}
+
+[data-theme='dark'] .tableWrapper {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface-highlight) 42%, black),
+      color-mix(in srgb, var(--color-surface-strong) 92%, black)
+    );
+}
+
+[data-theme='dark'] .tableScroller {
+  scrollbar-color: color-mix(in srgb, var(--color-primary) 44%, transparent)
+    color-mix(in srgb, var(--color-surface-highlight) 24%, black);
+}
+
+[data-theme='dark'] .table thead th {
+  background: color-mix(in srgb, var(--color-surface-highlight) 60%, black);
+}
+
+[data-theme='dark'] .tableScroller::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--color-surface-highlight) 24%, black);
+}
+
+[data-theme='dark'] .tableScroller::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-primary) 36%, transparent);
+  border-color: color-mix(in srgb, var(--color-surface-highlight) 24%, black);
+}
+
+[data-theme='dark'] .answerTrigger {
+  background: color-mix(in srgb, var(--color-surface-strong) 84%, transparent);
+}
+
+[data-theme='dark'] .answerTrigger:hover {
+  background: color-mix(in srgb, var(--color-surface-highlight) 54%, black);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.26);
+}
+
+[data-theme='dark'] .tooltip {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface-highlight) 42%, black),
+      color-mix(in srgb, var(--color-surface-strong) 94%, black)
+    );
+}
+
+@media screen and (max-width: 1157px) {
+  .tooltip {
+    left: 0;
+    right: auto;
+    top: auto;
+    bottom: calc(100% + 10px);
+    min-width: min(14rem, calc(100vw - 4rem));
+    max-width: min(20rem, calc(100vw - 3rem));
+    transform: translateY(-6px);
+  }
+
+  .answerTrigger:hover .tooltip,
+  .answerTrigger:focus-visible .tooltip {
+    transform: translateY(0);
+  }
+
+  .tableScroller {
+    overflow: visible;
+    padding-bottom: 0;
+    clip-path: none;
+  }
+
+  .table {
+    min-width: 0;
+    display: block;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tbody {
+    display: grid;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .table tbody tr {
+    display: grid;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--color-primary) 4%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 10%, var(--color-border-light));
+  }
+
+  .table tbody th,
+  .table tbody td {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+
+  .table tbody th.questionTitle,
+  .table tbody td.numericValue,
+  .table tbody td.answerCell {
+    display: grid;
+  }
+
+  .questionTitle {
+    min-width: 0;
+    gap: 6px;
+  }
+
+  .questionTitle::before,
+  .numericValue::before,
+  .answerCell::before {
+    content: attr(data-label);
+    color: var(--color-text-secondary);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .numericValue,
+  .answerCell {
+    min-width: 0;
+    display: grid;
+    gap: 4px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .overviewCard {
+    padding: 18px 16px;
+    border-radius: 22px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .overviewCard {
+    padding: 16px 14px;
+  }
+
+  .table tbody {
+    padding: 10px;
+  }
+
+  .table tbody tr {
+    padding: 12px;
+  }
+}
+
+@media screen and (max-width: 1157px) {
+  [data-theme='dark'] .table tbody tr {
+    background: color-mix(in srgb, var(--color-surface-highlight) 36%, black);
+  }
+}
+
+@media (hover: none) {
+  .answerTrigger {
+    cursor: default;
+  }
+
+  .tooltip {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overviewCard,
+  .tableWrapper,
+  .answerTrigger,
+  .tooltip {
+    transition: none;
+  }
+
+  .answerTrigger:hover,
+  .answerTrigger:focus-visible {
+    transform: none;
+    filter: none;
+  }
+}

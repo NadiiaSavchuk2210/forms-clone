@@ -2,9 +2,9 @@ import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import Button from '@/shared/ui/Button/Button';
 import css from '../Home.module.css';
 
-type Props = {
+interface Props {
   formsCount: number;
-};
+}
 
 const HomeHeader = ({ formsCount }: Props) => {
   return (

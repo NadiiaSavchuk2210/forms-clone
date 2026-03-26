@@ -49,6 +49,7 @@ const FormFiller = () => {
           <EmptyState
             title="Form link is missing"
             description="The form could not be opened because no form id was provided."
+            headingLevel={2}
           />
         </section>
       </PageLayout>
@@ -99,6 +100,7 @@ const FormFiller = () => {
           <EmptyState
             title="Form not found"
             description="The requested form could not be found."
+            headingLevel={2}
           />
         </section>
       </PageLayout>

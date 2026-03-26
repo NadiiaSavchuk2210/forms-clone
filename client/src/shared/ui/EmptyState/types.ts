@@ -5,3 +5,5 @@ export type EmptyStateContent = {
   description: string;
   action?: string;
 };
+
+export type EmptyStateHeadingLevel = 2 | 3;

@@ -3,15 +3,17 @@ import { toast } from 'react-hot-toast';
 import { useGetFormQuery } from '@/entities/form/api';
 import { useSubmitResponseMutation } from '@/entities/response/api';
 import { getUserFriendlyError } from '@/shared/lib/error-handler';
-import { validateFormSubmission } from '@/shared/lib/validation';
+import {
+  buildValidationErrorMap,
+  getFirstFieldError,
+  getVisibleValidationErrors,
+  validateFormSubmission,
+} from '@/shared/lib/validation';
 import {
   buildAnswerInput,
-  buildValidationErrorMap,
   createFormFillerActions,
   createQuestionFieldActions,
   createQuestionsModel,
-  getFirstFieldError,
-  getVisibleValidationErrors,
   syncAnswersWithQuestions,
   setSingleAnswerValue,
   toggleAnswerOption,

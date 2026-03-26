@@ -86,7 +86,7 @@ const Home = () => {
 
       {draggableForms.length === 0 ? (
         <section className={clsx(css.collectionShell, css.emptyShell)}>
-          <EmptyState variant="forms" />
+          <EmptyState variant="forms" headingLevel={2} />
         </section>
       ) : (
         <section className={css.collectionShell}>

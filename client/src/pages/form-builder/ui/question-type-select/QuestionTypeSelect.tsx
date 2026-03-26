@@ -4,11 +4,11 @@ import { QuestionType } from '@/shared/api/generated';
 import type { QuestionTypeOption } from '../types';
 import css from './QuestionTypeSelect.module.css';
 
-type Props = {
+interface Props {
   value: QuestionType;
   options: readonly QuestionTypeOption[];
   onChange: (value: QuestionType) => void;
-};
+}
 
 const QuestionTypeSelect = ({
   value,

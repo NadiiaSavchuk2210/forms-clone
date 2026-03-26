@@ -2,7 +2,10 @@ import { clsx } from 'clsx';
 import css from './EmptyState.module.css';
 import { MdOutlineAssignment, MdOutlineAnalytics } from 'react-icons/md';
 import { EMPTY_STATE_CONTENT } from './config';
-import { EmptyStateVariant } from './types';
+import {
+  EmptyStateHeadingLevel,
+  EmptyStateVariant,
+} from './types';
 
 interface EmptyStateProps {
   title?: string;
@@ -11,6 +14,7 @@ interface EmptyStateProps {
   onAction?: () => void;
   variant?: EmptyStateVariant;
   className?: string;
+  headingLevel?: EmptyStateHeadingLevel;
 }
 
 const ICONS = {
@@ -32,8 +36,10 @@ const EmptyState = ({
   onAction,
   variant = 'generic',
   className,
+  headingLevel = 3,
 }: EmptyStateProps) => {
   const Icon = ICONS[variant];
+  const TitleTag = headingLevel === 2 ? 'h2' : 'h3';
 
   const content = EMPTY_STATE_CONTENT[variant];
 
@@ -53,7 +59,7 @@ const EmptyState = ({
           <Icon className={css.icon} />
         </div>
 
-        <h3 className={css.title}>{resolvedTitle}</h3>
+        <TitleTag className={css.title}>{resolvedTitle}</TitleTag>
         <p className={css.description}>{resolvedDescription}</p>
 
         {resolvedAction && onAction && (
