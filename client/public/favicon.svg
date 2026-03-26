@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="glow" cx="20%" cy="18%" r="90%">
+      <stop offset="0%" stop-color="#183222" />
+      <stop offset="60%" stop-color="#111915" />
+      <stop offset="100%" stop-color="#0a100d" />
+    </radialGradient>
+    <linearGradient id="frame" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#75df8f" />
+      <stop offset="100%" stop-color="#1f6a35" />
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="18" fill="url(#glow)" />
+  <rect
+    x="3.5"
+    y="3.5"
+    width="57"
+    height="57"
+    rx="14.5"
+    fill="none"
+    stroke="url(#frame)"
+    stroke-width="1.5"
+    opacity="0.75"
+  />
+
+  <g transform="translate(11.5 11.5)">
+    <rect
+      x="0"
+      y="0"
+      width="41"
+      height="41"
+      rx="12"
+      fill="#0f1713"
+      opacity="0.92"
+    />
+    <path
+      d="M25.113 10.25l5.638 1.025 4.612-1.025-10.25-10.25-1.331 4.818z"
+      fill="#56368a"
+    />
+    <path
+      d="M25.113 10.25v-10.25h-16.71a2.767 2.767 0 0 0-2.767 2.767v35.375a2.767 2.767 0 0 0 2.767 2.767H32.61a2.767 2.767 0 0 0 2.767-2.767V10.25z"
+      fill="#7248b9"
+    />
+    <path
+      d="M13.522 29.627a1.434 1.434 0 1 1 0-2.869 1.434 1.434 0 0 1 0 2.869zm0-5.637a1.434 1.434 0 1 1 0-2.869 1.434 1.434 0 0 1 0 2.869zm0-5.638a1.434 1.434 0 1 1 0-2.869 1.434 1.434 0 0 1 0 2.869zm15.375 11.278H17.209v-2.357h11.688zm0-5.638H17.209v-2.357h11.688zm0-5.638H17.209v-2.357h11.688z"
+      fill="#fff"
+    />
+  </g>
+</svg>

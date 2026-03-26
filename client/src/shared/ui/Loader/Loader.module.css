@@ -1,12 +1,192 @@
 .backdrop {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--overlay-backdrop);
+  inset: 0;
   z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background:
+    radial-gradient(
+      circle at top,
+      color-mix(in srgb, var(--color-primary) 10%, white),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at bottom,
+      color-mix(in srgb, var(--color-surface-highlight) 26%, white),
+      transparent 40%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface) 62%, transparent),
+      color-mix(in srgb, var(--color-surface-warm-soft) 72%, transparent)
+    );
+  backdrop-filter: blur(12px);
+}
+
+.loaderCard {
+  width: min(100%, 360px);
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+  padding: 30px 26px;
+  border-radius: 36px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 10%, white),
+      color-mix(in srgb, var(--color-surface-highlight) 18%, white)
+    );
+  border: 1px solid color-mix(in srgb, var(--color-primary) 22%, var(--color-border-light));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, white 58%, transparent),
+    0 24px 56px rgb(35 32 24 / 0.12);
+}
+
+.orbit {
+  --loader-color: var(--color-primary);
+  position: relative;
+  width: 112px;
+  height: 112px;
+  filter: drop-shadow(0 12px 20px color-mix(in srgb, var(--loader-color) 14%, transparent));
+}
+
+.ring,
+.ringSecondary {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+}
+
+.ring {
+  border-top-color: var(--loader-color);
+  border-right-color: color-mix(in srgb, var(--loader-color) 68%, white);
+  animation: spin 1.05s linear infinite;
+}
+
+.ringSecondary {
+  inset: 12px;
+  border-bottom-color: var(--loader-color);
+  border-left-color: color-mix(in srgb, var(--loader-color) 58%, white);
+  animation: spinReverse 1.35s linear infinite;
+}
+
+.core {
+  position: absolute;
+  inset: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at top,
+      color-mix(in srgb, var(--loader-color) 32%, white),
+      color-mix(in srgb, var(--color-surface) 88%, transparent)
+    );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, white 72%, transparent),
+    0 12px 24px color-mix(in srgb, var(--loader-color) 10%, transparent);
+}
+
+.coreIcon {
+  font-size: 30px;
+  color: var(--loader-color);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.copy {
+  display: grid;
+  gap: 10px;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-lg);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.text {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  max-width: 22rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(0.96);
+    opacity: 0.82;
+  }
+
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+[data-theme='dark'] .backdrop {
+  background:
+    radial-gradient(
+      circle at top,
+      color-mix(in srgb, var(--color-primary) 18%, black),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at bottom,
+      color-mix(in srgb, #2f8f5b 12%, black),
+      transparent 44%
+    ),
+    linear-gradient(
+      180deg,
+      rgb(4 8 7 / 0.52),
+      rgb(5 10 8 / 0.62)
+    );
+}
+
+[data-theme='dark'] .loaderCard {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 10%, var(--color-surface-strong)),
+      color-mix(in srgb, var(--color-surface-highlight) 14%, var(--color-surface))
+    );
+  border-color: color-mix(in srgb, var(--color-primary) 26%, var(--color-border-light));
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.04),
+    0 24px 56px rgb(0 0 0 / 0.36);
+}
+
+[data-theme='dark'] .core {
+  background:
+    radial-gradient(
+      circle at top,
+      color-mix(in srgb, var(--loader-color) 22%, var(--color-surface-strong)),
+      color-mix(in srgb, var(--color-surface) 92%, black)
+    );
 }

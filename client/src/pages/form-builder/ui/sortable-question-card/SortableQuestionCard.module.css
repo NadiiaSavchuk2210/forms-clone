@@ -148,9 +148,10 @@
   display: grid;
   gap: 12px;
   margin: 0;
-  padding: 0;
+  padding: 10px 0 0;
   border: 0;
   min-inline-size: 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-primary) 12%, var(--color-border-light));
 }
 
 .optionRow {
@@ -165,10 +166,41 @@
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+  padding-top: 4px;
 }
 
 .muted {
   color: var(--color-text-secondary);
+}
+
+.optionInput {
+  width: 100%;
+  min-width: 0;
+  border: 2px solid var(--color-border-light);
+  border-radius: 18px;
+  background: var(--color-surface-warm);
+  color: var(--color-text-primary);
+  padding: 14px 16px;
+  font-size: var(--font-base);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.optionInput::placeholder {
+  color: color-mix(in srgb, var(--color-text-secondary) 84%, white);
+  opacity: 1;
+}
+
+.optionInput:focus {
+  outline: none;
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 15%, transparent);
+}
+
+.secondaryButton {
+  min-height: 44px;
 }
 
 .errorText {
@@ -176,4 +208,56 @@
   color: var(--color-danger);
   font-size: var(--font-sm);
   line-height: 1.5;
+}
+
+[data-theme='dark'] .questionCard {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface-strong) 88%, black),
+      color-mix(in srgb, var(--color-surface) 98%, black)
+    );
+  border-color: color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-lg);
+}
+
+[data-theme='dark'] .dragHandle {
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface-strong));
+  border-color: color-mix(in srgb, var(--color-primary) 20%, var(--color-border-light));
+}
+
+[data-theme='dark'] .questionBadge {
+  background: color-mix(in srgb, var(--color-primary) 16%, var(--color-surface-strong));
+  color: var(--color-accent);
+}
+
+[data-theme='dark'] .typeHelp,
+[data-theme='dark'] .muted {
+  color: color-mix(in srgb, var(--color-text-secondary) 96%, white);
+}
+
+[data-theme='dark'] .optionList {
+  border-top-color: color-mix(in srgb, var(--color-primary) 14%, var(--color-border-light));
+}
+
+[data-theme='dark'] .optionInput {
+  background: color-mix(in srgb, var(--color-surface-warm) 94%, black);
+  border-color: color-mix(in srgb, var(--color-primary) 12%, var(--color-border-light));
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .optionInput::placeholder {
+  color: color-mix(in srgb, var(--color-text-secondary) 92%, white);
+}
+
+[data-theme='dark'] .secondaryButton[data-variant='outline'] {
+  color: var(--color-text-primary);
+  background: color-mix(in srgb, var(--color-surface-strong) 88%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+}
+
+[data-theme='dark'] .secondaryButton[data-variant='outline']:hover {
+  color: #081117;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
 }

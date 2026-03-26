@@ -150,3 +150,19 @@
     transform: translateY(0) scale(1);
   }
 }
+
+[data-theme='dark'] .trigger {
+  border-color: color-mix(in srgb, var(--color-primary) 14%, var(--color-border-light));
+  background: color-mix(in srgb, var(--color-surface-strong) 82%, transparent);
+}
+
+[data-theme='dark'] .trigger:hover,
+[data-theme='dark'] .trigger:focus-visible {
+  background: color-mix(in srgb, var(--color-surface-strong) 92%, transparent);
+}
+
+[data-theme='dark'] .themeOptions {
+  border-color: color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  background: color-mix(in srgb, var(--color-surface-strong) 88%, transparent);
+  box-shadow: 0 16px 34px rgb(0 0 0 / 0.38);
+}

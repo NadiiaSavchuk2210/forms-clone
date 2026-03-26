@@ -10,6 +10,129 @@
   height: 100%;
 }
 
+.skeletonCard {
+  min-height: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 26%, var(--color-border-light));
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 12%, white),
+      color-mix(in srgb, var(--color-surface-highlight) 42%, white)
+    );
+  box-shadow: var(--shadow-elevated-md);
+}
+
+.skeletonHeader,
+.skeletonActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.skeletonContent {
+  display: grid;
+  gap: 12px;
+  flex: 1;
+}
+
+.skeletonHandle,
+.skeletonBadge,
+.skeletonMeta,
+.skeletonTitle,
+.skeletonTitleShort,
+.skeletonLine,
+.skeletonLineShort,
+.skeletonButton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 16%, white);
+}
+
+.skeletonHandle::after,
+.skeletonBadge::after,
+.skeletonMeta::after,
+.skeletonTitle::after,
+.skeletonTitleShort::after,
+.skeletonLine::after,
+.skeletonLineShort::after,
+.skeletonButton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      color-mix(in srgb, white 80%, transparent) 48%,
+      transparent 100%
+    );
+  animation: shimmer 1.45s ease-in-out infinite;
+}
+
+.skeletonHandle {
+  width: 44px;
+  height: 44px;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--color-primary) 22%, white);
+}
+
+.skeletonBadge {
+  width: 92px;
+  height: 24px;
+  background: color-mix(in srgb, var(--color-accent) 26%, white);
+}
+
+.skeletonMeta {
+  width: 108px;
+  height: 14px;
+  background: color-mix(in srgb, var(--color-text-secondary) 16%, white);
+}
+
+.skeletonTitle {
+  width: 82%;
+  height: 22px;
+  background: color-mix(in srgb, var(--color-primary) 20%, white);
+}
+
+.skeletonTitleShort {
+  width: 52%;
+  height: 22px;
+  background: color-mix(in srgb, var(--color-primary) 14%, white);
+}
+
+.skeletonLine {
+  width: 100%;
+  height: 14px;
+  background: color-mix(in srgb, var(--color-text-secondary) 12%, white);
+}
+
+.skeletonLineShort {
+  width: 74%;
+  height: 14px;
+  background: color-mix(in srgb, var(--color-text-secondary) 10%, white);
+}
+
+.skeletonButton {
+  width: 118px;
+  height: 42px;
+  background: color-mix(in srgb, var(--color-primary) 18%, white);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 @media screen and (min-width: 768px) {
   .formsList {
     grid-template-columns: repeat(2, 1fr);

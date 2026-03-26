@@ -31,7 +31,7 @@ const Button = (props: ButtonProps) => {
 
   if (props.as === 'link') {
     return (
-      <Link to={props.href} className={classes}>
+      <Link to={props.href} className={classes} data-variant={variant}>
         {children}
       </Link>
     );
@@ -43,6 +43,7 @@ const Button = (props: ButtonProps) => {
       onClick={props.onClick}
       disabled={props.disabled}
       className={classes}
+      data-variant={variant}
     >
       {children}
     </button>

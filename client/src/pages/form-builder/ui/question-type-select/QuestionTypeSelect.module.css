@@ -116,3 +116,43 @@
   font-size: var(--font-sm);
   line-height: 1.45;
 }
+
+[data-theme='dark'] .select {
+  border-color: color-mix(in srgb, var(--color-primary) 14%, var(--color-border-light));
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 8%, var(--color-surface-strong)),
+      color-mix(in srgb, var(--color-surface-warm) 92%, black)
+    );
+}
+
+[data-theme='dark'] .selectOpen {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 24%, transparent);
+}
+
+[data-theme='dark'] .selectMenu {
+  border-color: color-mix(in srgb, var(--color-primary) 22%, var(--color-border-light));
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 10%, var(--color-surface-strong)),
+      color-mix(in srgb, var(--color-surface-warm-soft) 92%, black)
+    );
+  box-shadow: var(--shadow-elevated-lg);
+}
+
+[data-theme='dark'] .selectOption {
+  background: color-mix(in srgb, var(--color-surface-strong) 88%, transparent);
+  border-color: color-mix(in srgb, var(--color-border-light) 74%, transparent);
+}
+
+[data-theme='dark'] .selectOption:hover {
+  background: color-mix(in srgb, var(--color-primary) 12%, var(--color-surface-strong));
+  border-color: color-mix(in srgb, var(--color-primary) 32%, var(--color-border-light));
+}
+
+[data-theme='dark'] .selectOptionActive {
+  background: color-mix(in srgb, var(--color-primary) 18%, var(--color-surface-strong));
+  border-color: color-mix(in srgb, var(--color-primary) 44%, var(--color-border-light));
+}

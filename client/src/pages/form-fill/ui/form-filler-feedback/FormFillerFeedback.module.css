@@ -46,3 +46,24 @@
 .errorList {
   padding-left: 18px;
 }
+
+[data-theme='dark'] .feedbackCard {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface-strong) 88%, black),
+      color-mix(in srgb, var(--color-surface) 98%, black)
+    );
+  border-color: color-mix(in srgb, var(--color-primary) 16%, var(--color-border-light));
+  box-shadow: var(--shadow-elevated-lg);
+}
+
+[data-theme='dark'] .successCard {
+  border-color: color-mix(in srgb, var(--color-primary) 28%, var(--color-border-light));
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-primary) 14%, var(--color-surface-strong)),
+      color-mix(in srgb, var(--color-surface-highlight) 24%, var(--color-surface))
+    );
+}
