@@ -2,13 +2,13 @@ import {
   MAX_FORM_DESCRIPTION_LENGTH,
   MAX_FORM_TITLE_LENGTH,
   MAX_QUESTION_TITLE_LENGTH,
-} from '@shared/validation';
+} from '../../../shared/src/validation';
 import {
   QuestionType,
   type CreateFormInput,
   type Form,
   type SubmitResponseInput,
-} from '@shared/types';
+} from '../../../shared/src/types';
 
 export interface ValidationResult {
   valid: boolean;
