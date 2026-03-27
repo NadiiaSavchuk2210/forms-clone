@@ -24,15 +24,26 @@ _Built with React, TypeScript, Redux Toolkit, RTK Query, GraphQL, and Node.js._
 
 ---
 
+<a id="at-a-glance"></a>
+
 ## ✨ At a Glance
 
-| Area | Details |
-| :-- | :-- |
-| Frontend | React, TypeScript, Vite, Redux Toolkit, RTK Query |
-| Backend | Node.js, Apollo Server, GraphQL |
-| Monorepo Packages | `client`, `server`, `shared` |
-| Main Flows | Create form, fill form, submit response, review results |
-| Data Storage | In-memory store for the lifetime of the running server |
+| Area              | Details                                                 |
+| :---------------- | :------------------------------------------------------ |
+| Frontend          | React, TypeScript, Vite, Redux Toolkit, RTK Query       |
+| Backend           | Node.js, Apollo Server, GraphQL                         |
+| Monorepo Packages | `client`, `server`, `shared`                            |
+| Main Flows        | Create form, fill form, submit response, review results |
+| Data Storage      | In-memory store for the lifetime of the running server  |
+
+<a id="live-links"></a>
+
+## 🌐 Live Links
+
+- **Frontend:** [add-your-vercel-url-here](https://forms-clone-client.vercel.app)
+- **Backend:** [add-your-render-url-here](https://forms-clone-api.onrender.com)
+
+<a id="project-overview"></a>
 
 ## 📌 Project Overview
 
@@ -51,10 +62,13 @@ The repository is intentionally split into separate workspaces for the client an
 
 ---
 
+<a id="contents"></a>
+
 ## 🧭 Contents
 
 - [📌 Project Overview](#project-overview)
 - [🚀 Core Features](#core-features)
+- [🌐 Live Links](#live-links)
 - [🗂 Project Structure](#project-structure)
 - [💻 Tech Stack](#tech-stack)
 - [🎯 Deliverables](#deliverables)
@@ -67,6 +81,8 @@ The repository is intentionally split into separate workspaces for the client an
 - [👩‍💻 Author](#author)
 
 ---
+
+<a id="core-features"></a>
 
 ## 🚀 Core Features
 
@@ -103,6 +119,8 @@ The repository is intentionally split into separate workspaces for the client an
 
 ---
 
+<a id="project-structure"></a>
+
 ## 🗂 Project Structure
 
 ```text
@@ -128,6 +146,8 @@ forms-clone/
 
 ---
 
+<a id="tech-stack"></a>
+
 ## 💻 Tech Stack
 
 - **Front-End:** React, TypeScript, Vite, React Router, Redux Toolkit, RTK Query
@@ -138,12 +158,16 @@ forms-clone/
 
 ---
 
+<a id="deliverables"></a>
+
 ## 🎯 Deliverables
 
 - **Git repository:** [github.com/NadiiaSavchuk2210/forms-clone](https://github.com/NadiiaSavchuk2210/forms-clone)
 - **Root README:** this file contains setup instructions, local run commands, project overview, core features, and author information
 
 ---
+
+<a id="local-setup"></a>
 
 ## ⚙️ Local Setup
 
@@ -210,6 +234,8 @@ http://localhost:4000/graphql
 
 ---
 
+<a id="available-scripts"></a>
+
 ## 🛠 Available Scripts
 
 Run these commands from the repository root:
@@ -231,6 +257,8 @@ What they do:
 - `npm run codegen` regenerates GraphQL types and RTK Query endpoints for the client
 
 ---
+
+<a id="graphql-api-summary"></a>
 
 ## 🔗 GraphQL API Summary
 
@@ -254,6 +282,8 @@ What they do:
 
 ---
 
+<a id="graphql-code-generation"></a>
+
 ## 🧬 GraphQL Code Generation
 
 The client uses GraphQL code generation for typed operations and RTK Query hooks.
@@ -270,6 +300,8 @@ npm run codegen
 ```
 
 ---
+
+<a id="testing-and-validation"></a>
 
 ## 🧪 Testing and Validation
 
@@ -290,6 +322,8 @@ npm run build
 
 ---
 
+<a id="notes"></a>
+
 ## 📝 Notes
 
 - No authentication is implemented, as required by the task
@@ -297,6 +331,8 @@ npm run build
 - The monorepo contains an additional `shared` package to keep client and server types aligned
 
 ---
+
+<a id="author"></a>
 
 ## 👩‍💻 Author
 
