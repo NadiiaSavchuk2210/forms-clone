@@ -4,7 +4,7 @@ import {
   type Form,
   type Response,
   type SubmitResponseInput,
-} from '@shared/types';
+} from '../../shared/src/types';
 import { validateForm, validateResponse } from './utils/validation';
 import { forms, responses } from './database';
 

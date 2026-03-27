@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 import { resolvers } from './resolvers';
 import { forms, responses } from './database';
-import { QuestionType } from '@shared/types';
+import { QuestionType } from '../../shared/src/types';
 
 test.beforeEach(() => {
   forms.splice(0, forms.length);
