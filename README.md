@@ -40,8 +40,8 @@ _Built with React, TypeScript, Redux Toolkit, RTK Query, GraphQL, and Node.js._
 
 ## 🌐 Live Links
 
-- **Frontend:** [add-your-vercel-url-here](https://forms-clone-client.vercel.app)
-- **Backend:** [add-your-render-url-here](https://forms-clone-api.onrender.com)
+- **Frontend:** [forms-clone-client.vercel.app](https://forms-clone-client.vercel.app)
+- **Backend:** [forms-clone-api.onrender.com](https://forms-clone-api.onrender.com)
 
 <a id="project-overview"></a>
 
