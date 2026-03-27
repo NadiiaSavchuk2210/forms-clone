@@ -1,17 +1,13 @@
 import { clsx } from 'clsx';
-import {
-  isDateQuestionType,
-  isTextQuestionType,
-} from '@/entities/form/model';
+
+import { isDateQuestionType, isTextQuestionType } from '@/entities/form/model';
 import DatePickerField from '@/shared/ui/DatePickerField';
 import TextField from '@/shared/ui/TextField';
-import {
-  getSingleAnswerValue,
-  isCheckboxQuestion,
-  isSingleChoiceQuestion,
-} from './lib';
+
+import { getSingleAnswerValue, isCheckboxQuestion, isSingleChoiceQuestion } from './lib';
 import QuestionOptionsGroup from './QuestionOptionsGroup';
 import type { QuestionAnswerCardProps } from './types';
+
 import css from './QuestionAnswerCard.module.css';
 
 const QuestionAnswerCard = ({

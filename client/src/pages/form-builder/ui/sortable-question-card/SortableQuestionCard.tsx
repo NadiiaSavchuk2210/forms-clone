@@ -1,14 +1,17 @@
-import { clsx } from 'clsx';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { QuestionType } from '@/shared/api/generated';
+import { clsx } from 'clsx';
 import { MdDragIndicator } from 'react-icons/md';
-import QuestionCardContent from './QuestionCardContent';
+
+import { QuestionType } from '@/shared/api/generated';
+
 import type {
-  FormBuilderViewModel,
   FormBuilderQuestionDraft,
+  FormBuilderViewModel,
   QuestionCardActions,
 } from '../types';
+import QuestionCardContent from './QuestionCardContent';
+
 import css from './SortableQuestionCard.module.css';
 
 interface Props extends QuestionCardActions {

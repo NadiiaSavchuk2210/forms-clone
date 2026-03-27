@@ -1,6 +1,8 @@
 import { clsx } from 'clsx';
-import css from './QuestionAnswerCard.module.css';
+
 import type { QuestionOptionsGroupProps } from './types';
+
+import css from './QuestionAnswerCard.module.css';
 
 const QuestionOptionsGroup = ({
   question,

@@ -1,4 +1,5 @@
 import { Toaster } from 'react-hot-toast';
+
 import css from './AppToaster.module.css';
 
 const AppToaster = () => {

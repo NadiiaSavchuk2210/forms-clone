@@ -1,6 +1,8 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+
 import { isChoiceQuestionType } from '@/entities/form/model';
 import { QuestionType } from '@/shared/api/generated';
+
 import { loadFormBuilderDraft } from '../lib/formBuilder.storage';
 
 export interface FormBuilderQuestionDraft {

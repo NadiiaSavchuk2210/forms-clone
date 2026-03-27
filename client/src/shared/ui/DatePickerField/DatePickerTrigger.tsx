@@ -1,7 +1,9 @@
 import { clsx } from 'clsx';
 import { forwardRef } from 'react';
 import { FiCalendar } from 'react-icons/fi';
+
 import type { DatePickerTriggerProps } from './types';
+
 import css from './DatePickerField.module.css';
 
 const DatePickerTrigger = forwardRef<HTMLButtonElement, DatePickerTriggerProps>(

@@ -1,11 +1,13 @@
 import { clsx } from 'clsx';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+
 import DatePickerTrigger from './DatePickerTrigger';
 import { formatDateValue, parseDateValue } from './lib';
 import type { DatePickerFieldProps } from './types';
+
 import css from './DatePickerField.module.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const DatePickerField = ({
   label,

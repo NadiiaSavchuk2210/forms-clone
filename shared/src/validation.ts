@@ -1,0 +1,3 @@
+export const MAX_FORM_TITLE_LENGTH = 200;
+export const MAX_FORM_DESCRIPTION_LENGTH = 1000;
+export const MAX_QUESTION_TITLE_LENGTH = 300;

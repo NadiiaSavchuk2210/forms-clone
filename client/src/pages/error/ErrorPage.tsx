@@ -1,8 +1,10 @@
+import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
+
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
 import Button from '@/shared/ui/Button';
 import { PageLayout } from '@/shared/ui/layout';
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
+
 import css from './ErrorPage.module.css';
 
 const ErrorPage = () => {

@@ -1,20 +1,23 @@
 import { DndContext, closestCenter } from '@dnd-kit/core';
-import { ROUTES } from '@/app/providers/router/config/routesConfig';
-import Button from '@/shared/ui/Button';
-import ContentLoader from '@/shared/ui/ContentLoader';
-import EmptyState from '@/shared/ui/EmptyState';
-import Pagination from '@/shared/ui/Pagination';
-import { PageLayout } from '@/shared/ui/layout';
 import { clsx } from 'clsx';
+
+import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import { useGetFormsQuery } from '@/entities/form/api';
 import { getErrorMessage } from '@/shared/lib/error-handler';
 import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
+import Button from '@/shared/ui/Button';
+import ContentLoader from '@/shared/ui/ContentLoader';
+import EmptyState from '@/shared/ui/EmptyState';
+import { PageLayout } from '@/shared/ui/layout';
+import Pagination from '@/shared/ui/Pagination';
 import FormsList from '@/widgets/forms-list/FormsList';
 import FormsListSkeleton from '@/widgets/forms-list/FormsListSkeleton';
+
+import { FORMS_PER_PAGE, FORMS_POLLING_INTERVAL } from './constants';
 import { useHomeDnd, useHomePagination } from './model';
 import { HomeHeader } from './ui';
+
 import css from './Home.module.css';
-import { FORMS_PER_PAGE, FORMS_POLLING_INTERVAL } from './constants';
 
 const Home = () => {
   const { data, isLoading, isError, error, refetch } = useGetFormsQuery(

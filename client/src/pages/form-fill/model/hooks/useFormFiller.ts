@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-hot-toast';
+
 import { useGetFormQuery } from '@/entities/form/api';
 import { useSubmitResponseMutation } from '@/entities/response/api';
 import { getUserFriendlyError } from '@/shared/lib/error-handler';
@@ -9,20 +10,18 @@ import {
   getVisibleValidationErrors,
   validateFormSubmission,
 } from '@/shared/lib/validation';
+
+import { loadFormFillerDraft, saveFormFillerDraft } from '../lib/formFiller.storage';
 import {
   buildAnswerInput,
   createFormFillerActions,
   createQuestionFieldActions,
   createQuestionsModel,
-  syncAnswersWithQuestions,
   setSingleAnswerValue,
+  syncAnswersWithQuestions,
   toggleAnswerOption,
 } from '../lib/formFiller.utils';
 import type { QuestionAnswersById, SubmitSuccessState } from '../types';
-import {
-  loadFormFillerDraft,
-  saveFormFillerDraft,
-} from '../lib/formFiller.storage';
 
 type FormFillerState = {
   formId: string | null;

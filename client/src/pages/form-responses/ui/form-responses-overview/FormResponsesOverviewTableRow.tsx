@@ -1,5 +1,6 @@
 import type { FormResponsesQuestionAnalyticsRow } from '../../model';
 import FormResponsesOverviewAnswerItem from './FormResponsesOverviewAnswerItem';
+
 import css from './FormResponsesOverview.module.css';
 
 interface Props {

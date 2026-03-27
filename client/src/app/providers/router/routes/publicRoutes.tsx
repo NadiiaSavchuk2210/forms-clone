@@ -1,14 +1,16 @@
-import type { RouteObject } from 'react-router-dom';
 import { Suspense } from 'react';
+import type { RouteObject } from 'react-router-dom';
+
+import Loader from '@/shared/ui/Loader/Loader';
+
 import { ROUTES } from '../config/routesConfig';
 import {
-  Home,
   FormBuilder,
   FormFiller,
   FormResponses,
+  Home,
   NotFound,
 } from './lazyComponents';
-import Loader from '@/shared/ui/Loader/Loader';
 
 const publicRoutes: RouteObject[] = [
   {

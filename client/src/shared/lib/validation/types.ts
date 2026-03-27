@@ -24,6 +24,7 @@ export interface SubmittedQuestionData {
   id: string;
   title: string;
   type: FormQuestionType;
+  options?: string[];
 }
 
 export type QuestionAnswerValue = string | string[];

@@ -1,5 +1,6 @@
 import EmptyState from '@/shared/ui/EmptyState';
 import { PageLayout } from '@/shared/ui/layout';
+
 import css from '../../FormResponses.module.css';
 
 const FormResponsesMissingIdState = () => (

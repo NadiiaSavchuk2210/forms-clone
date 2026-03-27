@@ -1,1 +1,1 @@
-export { isValidDate } from '../date';
+  export { isValidDate } from '../date';

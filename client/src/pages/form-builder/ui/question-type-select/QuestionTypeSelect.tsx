@@ -1,7 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
 import { clsx } from 'clsx';
+import { useEffect, useRef, useState } from 'react';
+
 import { QuestionType } from '@/shared/api/generated';
+
 import type { QuestionTypeOption } from '../types';
+
 import css from './QuestionTypeSelect.module.css';
 
 interface Props {

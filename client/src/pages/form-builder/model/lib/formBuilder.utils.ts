@@ -1,9 +1,7 @@
-import {
-  isChoiceQuestionType,
-  normalizeQuestionOptions,
-} from '@/entities/form/model';
+import { isChoiceQuestionType, normalizeQuestionOptions } from '@/entities/form/model';
 import type { QuestionInput } from '@/shared/api/generated';
 import type { ValidationError } from '@/shared/lib/validation';
+
 import type { FormBuilderQuestionDraft } from '../slice/formBuilderSlice';
 
 export const buildQuestionInput = (

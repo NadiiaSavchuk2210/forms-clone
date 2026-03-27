@@ -1,5 +1,6 @@
-import css from './Loader.module.css';
 import { MdOutlineAutoAwesome } from 'react-icons/md';
+
+import css from './Loader.module.css';
 
 const Loader = () => {
   return (

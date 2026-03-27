@@ -1,9 +1,7 @@
 import type { FormQuestion } from '@/entities/form/model';
 import { QUESTION_TYPE_LABELS } from '@/entities/form/model';
-import type {
-  ResponseAnswerRecord,
-  ResponseRecord,
-} from '@/entities/response/model';
+import type { ResponseAnswerRecord, ResponseRecord } from '@/entities/response/model';
+
 import type {
   FormResponseCard,
   FormResponseCardAnswer,
@@ -12,10 +10,7 @@ import type {
   FormResponsesSummaryModel,
 } from '../types';
 import { EMPTY_ANSWER_LABEL } from './formResponses.constants';
-import {
-  formatAnswerValue,
-  hasAnswerValues,
-} from './formResponses.formatters';
+import { formatAnswerValue, hasAnswerValues } from './formResponses.formatters';
 import type { IndexedResponse } from './formResponses.indexing';
 import { indexResponses } from './formResponses.indexing';
 

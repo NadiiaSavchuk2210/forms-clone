@@ -1,8 +1,11 @@
 import {
+  isCheckboxQuestionType,
+  isChoiceQuestionType,
   isDateQuestionType,
   isSingleChoiceQuestionType,
   isTextQuestionType,
 } from '@/entities/form/model';
+
 import type {
   SubmittedAnswerData,
   SubmittedQuestionData,
@@ -63,6 +66,37 @@ const validateSingleChoiceAnswer = (
   };
 };
 
+const validateChoiceAnswerValues = (
+  question: SubmittedQuestionData,
+  value: string[],
+): ValidationError | null => {
+  if (!isChoiceQuestionType(question.type)) {
+    return null;
+  }
+
+  const normalizedOptions = question.options ?? [];
+  const invalidValue = value.find((item) => !normalizedOptions.includes(item));
+
+  if (invalidValue) {
+    return {
+      field: question.id,
+      message: `Answer for "${question.title}" contains an invalid option`,
+    };
+  }
+
+  if (
+    isCheckboxQuestionType(question.type)
+    && new Set(value).size !== value.length
+  ) {
+    return {
+      field: question.id,
+      message: `Answer for "${question.title}" contains duplicate options`,
+    };
+  }
+
+  return null;
+};
+
 export const validateFormSubmission = (
   answers: SubmittedAnswerData[],
   questions: SubmittedQuestionData[],
@@ -99,6 +133,13 @@ export const validateFormSubmission = (
 
     if (singleChoiceError) {
       errors.push(singleChoiceError);
+      return;
+    }
+
+    const choiceAnswerValuesError = validateChoiceAnswerValues(question, value);
+
+    if (choiceAnswerValuesError) {
+      errors.push(choiceAnswerValuesError);
     }
   });
 

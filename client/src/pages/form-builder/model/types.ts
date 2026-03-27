@@ -1,14 +1,11 @@
+import type { DragEndEvent, SensorDescriptor, SensorOptions } from '@dnd-kit/core';
+
 import type { FormQuestionType, QuestionTypeOption } from '@/entities/form/model';
 import type { ValidationError } from '@/shared/lib/validation';
-import type {
-  DragEndEvent,
-  SensorDescriptor,
-  SensorOptions,
-} from '@dnd-kit/core';
+
 import type { FormBuilderQuestionDraft } from './slice/formBuilderSlice';
 
-export type { FormBuilderQuestionDraft };
-export type { QuestionTypeOption };
+export type { FormBuilderQuestionDraft,QuestionTypeOption };
 
 export type QuestionTypeLabels = Record<FormQuestionType, string>;
 

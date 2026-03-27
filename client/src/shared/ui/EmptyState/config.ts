@@ -1,4 +1,10 @@
-import { EmptyStateContent, EmptyStateVariant } from './types';
+import { MdOutlineAnalytics, MdOutlineAssignment } from 'react-icons/md';
+
+import type {
+  EmptyStateContent,
+  EmptyStateVariant,
+  EmptyStateVariantConfig,
+} from './types';
 
 export const EMPTY_STATE_CONTENT: Record<EmptyStateVariant, EmptyStateContent> =
   {
@@ -20,3 +26,21 @@ export const EMPTY_STATE_CONTENT: Record<EmptyStateVariant, EmptyStateContent> =
       action: undefined,
     },
   } as const;
+
+export const EMPTY_STATE_VARIANT_CONFIG: Record<
+  EmptyStateVariant,
+  EmptyStateVariantConfig
+> = {
+  forms: {
+    eyebrow: 'Ready to begin',
+    Icon: MdOutlineAssignment,
+  },
+  responses: {
+    eyebrow: 'Quiet inbox',
+    Icon: MdOutlineAnalytics,
+  },
+  generic: {
+    eyebrow: 'Coming soon',
+    Icon: MdOutlineAssignment,
+  },
+} as const;

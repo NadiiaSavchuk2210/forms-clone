@@ -1,5 +1,6 @@
 import type { FormResponseCard } from '../../model';
 import ResponseCardTable from './ResponseCardTable';
+
 import css from './ResponseCard.module.css';
 
 interface Props {

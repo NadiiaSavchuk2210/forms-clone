@@ -1,9 +1,12 @@
-import { useState } from 'react';
-import { useTheme } from '@/app/providers/theme/useTheme';
-import css from './ThemeSwitcher.module.css';
-import { Theme, THEMES } from '../model/theme.config';
 import { clsx } from 'clsx';
+import { useState } from 'react';
 import { HiOutlineSwatch } from 'react-icons/hi2';
+
+import { useTheme } from '@/app/providers/theme/useTheme';
+
+import { Theme, THEMES } from '../model/theme.config';
+
+import css from './ThemeSwitcher.module.css';
 
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();

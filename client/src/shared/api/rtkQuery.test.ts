@@ -1,10 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-
 import './typedDocumentString';
+
+import { configureStore } from '@reduxjs/toolkit';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
+
 import { baseApi } from './baseApi';
-import { QuestionType } from './generated';
 import { api as rtkApi } from './enhancedApi';
+import { QuestionType } from './generated';
 
 type TestStore = ReturnType<typeof createTestStore>;
 

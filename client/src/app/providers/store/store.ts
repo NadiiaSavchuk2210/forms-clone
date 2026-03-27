@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { baseApi } from '@/shared/api/baseApi';
-import { formBuilderReducer } from '@/pages/form-builder/model/slice/formBuilderSlice';
+
 import { saveFormBuilderDraft } from '@/pages/form-builder/model/lib/formBuilder.storage';
+import { formBuilderReducer } from '@/pages/form-builder/model/slice/formBuilderSlice';
+import { baseApi } from '@/shared/api/baseApi';
 
 export const store = configureStore({
   reducer: {

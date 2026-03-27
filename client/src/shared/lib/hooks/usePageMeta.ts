@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
+
 import { OG_IMAGE, SITE_NAME } from '@/shared/constants/metadata';
+
 import { useMetaTags } from './useMetaTags';
 
 type PageMetaParams = {

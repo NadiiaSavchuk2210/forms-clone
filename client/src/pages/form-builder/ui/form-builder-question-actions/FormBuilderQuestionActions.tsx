@@ -1,5 +1,7 @@
 import Button from '@/shared/ui/Button';
+
 import type { QuestionTypeOption } from '../types';
+
 import css from './FormBuilderQuestionActions.module.css';
 
 interface Props {

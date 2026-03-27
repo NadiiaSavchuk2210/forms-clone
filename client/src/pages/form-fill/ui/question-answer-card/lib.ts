@@ -2,6 +2,7 @@ import {
   isCheckboxQuestionType,
   isSingleChoiceQuestionType,
 } from '@/entities/form/model';
+
 import type { FormQuestion } from '../../model';
 
 export const getSingleAnswerValue = (answerValues: string[]): string =>

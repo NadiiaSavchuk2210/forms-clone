@@ -1,7 +1,9 @@
 import { Provider } from 'react-redux';
+
+import AppToaster from '@/shared/ui/AppToaster';
+
 import { store } from './store/store';
 import { ThemeProvider } from './theme/ThemeProvider';
-import AppToaster from '@/shared/ui/AppToaster';
 
 interface Props {
   children: React.ReactNode;

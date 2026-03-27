@@ -1,7 +1,10 @@
 import { clsx } from 'clsx';
-import Button from '@/shared/ui/Button';
-import type { SuccessLinks, SuccessState } from '../types';
+
 import type { ValidationError } from '@/shared/lib/validation';
+import Button from '@/shared/ui/Button';
+
+import type { SuccessLinks, SuccessState } from '../types';
+
 import css from './FormBuilderFeedback.module.css';
 
 interface Props {

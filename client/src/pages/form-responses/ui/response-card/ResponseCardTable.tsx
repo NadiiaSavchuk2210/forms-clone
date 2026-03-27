@@ -1,4 +1,6 @@
 import type { FormResponseCardAnswer } from '../../model';
+import ResponseCardTableRow from './ResponseCardTableRow';
+
 import css from './ResponseCard.module.css';
 
 interface Props {
@@ -20,21 +22,9 @@ const ResponseCardTable = ({ answers, title }: Props) => {
           </tr>
         </thead>
         <tbody>
-          {answers.map((answer) => {
-            const { displayValue, questionId, questionTitle, questionTypeLabel } = answer;
-
-            return (
-              <tr key={questionId}>
-                <th scope="row" className={css.questionTitle}>
-                  <span>{questionTitle}</span>
-                  <span className={css.questionHint}>{questionTypeLabel}</span>
-                </th>
-                <td className={css.answerValue} data-label="Answer">
-                  {displayValue}
-                </td>
-              </tr>
-            );
-          })}
+          {answers.map((answer) => (
+            <ResponseCardTableRow key={answer.questionId} answer={answer} />
+          ))}
         </tbody>
       </table>
     </div>

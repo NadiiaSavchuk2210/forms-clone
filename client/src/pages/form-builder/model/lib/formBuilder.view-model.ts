@@ -1,9 +1,15 @@
+import type { SensorDescriptor, SensorOptions } from '@dnd-kit/core';
+
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import type { AppDispatch } from '@/app/providers/store/store';
-import { getQuestionTypeHint } from '@/entities/form/model';
 import type { FormQuestionType } from '@/entities/form/model';
+import {
+  getQuestionTypeHint,
+  QUESTION_TYPE_LABELS,
+  QUESTION_TYPE_OPTIONS,
+} from '@/entities/form/model';
 import { getFirstFieldError } from '@/shared/lib/validation';
-import type { SensorDescriptor, SensorOptions } from '@dnd-kit/core';
+
 import {
   addQuestion,
   addQuestionOption,
@@ -18,7 +24,6 @@ import {
   updateQuestionTitle,
   updateQuestionType,
 } from '../slice/formBuilderSlice';
-import { QUESTION_TYPE_LABELS, QUESTION_TYPE_OPTIONS } from '@/entities/form/model';
 import type {
   FormBuilderActions,
   FormBuilderFieldErrors,

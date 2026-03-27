@@ -1,6 +1,7 @@
 import { clsx } from 'clsx';
-import css from './Button.module.css';
 import { Link } from 'react-router-dom';
+
+import css from './Button.module.css';
 
 type Variant = 'primary' | 'outline';
 

@@ -1,11 +1,9 @@
 import { clsx } from 'clsx';
+
+import { EMPTY_STATE_CONTENT, EMPTY_STATE_VARIANT_CONFIG } from './config';
+import type { EmptyStateHeadingLevel, EmptyStateVariant } from './types';
+
 import css from './EmptyState.module.css';
-import { MdOutlineAssignment, MdOutlineAnalytics } from 'react-icons/md';
-import { EMPTY_STATE_CONTENT } from './config';
-import {
-  EmptyStateHeadingLevel,
-  EmptyStateVariant,
-} from './types';
 
 interface EmptyStateProps {
   title?: string;
@@ -17,18 +15,6 @@ interface EmptyStateProps {
   headingLevel?: EmptyStateHeadingLevel;
 }
 
-const ICONS = {
-  forms: MdOutlineAssignment,
-  responses: MdOutlineAnalytics,
-  generic: MdOutlineAssignment,
-};
-
-const EYEBROW_LABELS: Record<EmptyStateVariant, string> = {
-  forms: 'Ready to begin',
-  responses: 'Quiet inbox',
-  generic: 'Coming soon',
-};
-
 const EmptyState = ({
   title,
   description,
@@ -38,7 +24,7 @@ const EmptyState = ({
   className,
   headingLevel = 3,
 }: EmptyStateProps) => {
-  const Icon = ICONS[variant];
+  const { Icon, eyebrow } = EMPTY_STATE_VARIANT_CONFIG[variant];
   const TitleTag = headingLevel === 2 ? 'h2' : 'h3';
 
   const content = EMPTY_STATE_CONTENT[variant];
@@ -53,7 +39,7 @@ const EmptyState = ({
         <div className={css.backgroundGlow} aria-hidden="true" />
         <div className={css.backgroundOrbit} aria-hidden="true" />
 
-        <span className={css.eyebrow}>{EYEBROW_LABELS[variant]}</span>
+        <span className={css.eyebrow}>{eyebrow}</span>
 
         <div className={css.iconWrapper}>
           <Icon className={css.icon} />
@@ -63,7 +49,7 @@ const EmptyState = ({
         <p className={css.description}>{resolvedDescription}</p>
 
         {resolvedAction && onAction && (
-          <button className={css.button} onClick={onAction}>
+          <button type="button" className={css.button} onClick={onAction}>
             {resolvedAction}
           </button>
         )}

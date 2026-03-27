@@ -1,4 +1,9 @@
 import {
+  MAX_FORM_DESCRIPTION_LENGTH,
+  MAX_FORM_TITLE_LENGTH,
+  MAX_QUESTION_TITLE_LENGTH,
+} from '@shared/validation';
+import {
   QuestionType,
   type CreateFormInput,
   type Form,
@@ -10,14 +15,22 @@ export interface ValidationResult {
   error?: string;
 }
 
-const MAX_FORM_TITLE_LENGTH = 200;
-const MAX_FORM_DESCRIPTION_LENGTH = 1000;
-const MAX_QUESTION_TITLE_LENGTH = 300;
-
 const normalizeText = (value: string): string => value.trim();
 
 const normalizeOptions = (options: string[] | undefined): string[] =>
   (options ?? []).map(normalizeText).filter(Boolean);
+
+const isValidDateValue = (value: string): boolean => {
+  const isIsoDate = /^\d{4}-\d{2}-\d{2}$/.test(value);
+
+  if (!isIsoDate) {
+    return false;
+  }
+
+  const parsedDate = new Date(`${value}T00:00:00.000Z`);
+  return !Number.isNaN(parsedDate.getTime())
+    && parsedDate.toISOString().startsWith(value);
+};
 
 export function validateForm(input: CreateFormInput): ValidationResult {
   const errors: string[] = [];
@@ -151,6 +164,11 @@ export function validateResponse(
           errors.push(
             `Question ${normalizedQuestionId} must contain exactly one value`,
           );
+        } else if (
+          question.type === QuestionType.DATE
+          && !isValidDateValue(normalizedValues[0])
+        ) {
+          errors.push(`Question ${normalizedQuestionId} must contain a valid date`);
         }
         break;
       }
