@@ -1,7 +1,10 @@
 import { rectSortingStrategy, SortableContext } from '@dnd-kit/sortable';
-import css from './FormsList.module.css';
+
 import type { GetFormsQuery } from '@/shared/api/generated';
+
 import FormCard from '../../entities/form/ui/FormCard/FormCard';
+
+import css from './FormsList.module.css';
 
 type HomeForm = GetFormsQuery['forms'][number];
 

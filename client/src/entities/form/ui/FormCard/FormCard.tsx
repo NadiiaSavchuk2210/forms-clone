@@ -1,13 +1,11 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import {
-  MdDragIndicator,
-  MdOutlineAssignment,
-  MdOutlineAnalytics,
-} from 'react-icons/md';
-import Button from '@/shared/ui/Button/Button';
+import { MdDragIndicator, MdOutlineAnalytics, MdOutlineAssignment } from 'react-icons/md';
+
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import type { GetFormsQuery } from '@/shared/api/generated';
+import Button from '@/shared/ui/Button/Button';
+
 import styles from './FormCard.module.css';
 
 type HomeForm = GetFormsQuery['forms'][number];
@@ -35,7 +33,7 @@ const FormCard = ({ form }: FormCardProps) => {
   const questionCount = form.questions.length;
 
   return (
-    <li ref={setNodeRef} role="listitem" style={style} className={styles.card}>
+    <li ref={setNodeRef} style={style} className={styles.card}>
       <div className={styles.cardHeader}>
         <div className={styles.cardContent}>
           <p className={styles.formMeta}>
@@ -47,9 +45,15 @@ const FormCard = ({ form }: FormCardProps) => {
           </p>
         </div>
 
-        <div className={styles.dragHandle} {...attributes} {...listeners}>
+        <button
+          type="button"
+          className={styles.dragHandle}
+          aria-label={`Reorder ${form.title}`}
+          {...attributes}
+          {...listeners}
+        >
           <MdDragIndicator size={24} />
-        </div>
+        </button>
       </div>
 
       <div className={styles.cardActions}>

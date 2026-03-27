@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
 import {
   DragEndEvent,
   PointerSensor,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
+import { useEffect, useState } from 'react';
+
 import type { GetFormsQuery } from '@/shared/api/generated';
 import { reorderItems } from '@/shared/lib/dnd/reorder';
 

@@ -1,8 +1,4 @@
-import type {
-  FormQuestion,
-  FormQuestionType,
-  FormRecord,
-} from '@/entities/form/model';
+import type { FormQuestion, FormQuestionType, FormRecord } from '@/entities/form/model';
 import type { ResponseRecord } from '@/entities/response/model';
 
 export type FormResponsesForm = FormRecord;

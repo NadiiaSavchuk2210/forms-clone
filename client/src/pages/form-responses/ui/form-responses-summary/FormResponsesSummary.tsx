@@ -1,5 +1,7 @@
 import Button from '@/shared/ui/Button';
+
 import type { FormResponsesSummaryModel } from '../../model';
+
 import css from './FormResponsesSummary.module.css';
 
 interface Props {

@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom';
+
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
 import { PageLayout } from '@/shared/ui/layout';
+
 import { useFormResponses } from './model';
 import {
   FormResponsesContent,
@@ -10,6 +12,7 @@ import {
   FormResponsesMissingIdState,
   FormResponsesNotFoundState,
 } from './ui';
+
 import css from './FormResponses.module.css';
 
 const FormResponses = () => {

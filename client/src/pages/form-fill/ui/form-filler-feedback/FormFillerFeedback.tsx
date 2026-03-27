@@ -1,6 +1,9 @@
 import { clsx } from 'clsx';
+
 import type { ValidationError } from '@/shared/lib/validation';
+
 import type { SubmitSuccessState } from '../../model';
+
 import css from './FormFillerFeedback.module.css';
 
 interface Props {

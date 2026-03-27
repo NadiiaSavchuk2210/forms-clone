@@ -1,6 +1,8 @@
-import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import { MdAdd, MdArrowBack, MdOpenInNew } from 'react-icons/md';
 import { matchPath } from 'react-router-dom';
+
+import { ROUTES } from '@/app/providers/router/config/routesConfig';
+
 import type { HeaderAction } from './types';
 
 const BACK_TO_FORMS_ACTION: HeaderAction = {

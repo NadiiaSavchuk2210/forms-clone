@@ -1,9 +1,7 @@
-import {
-  isCheckboxQuestionType,
-  isDateQuestionType,
-} from '@/entities/form/model';
 import type { FormQuestionType } from '@/entities/form/model';
+import { isCheckboxQuestionType, isDateQuestionType } from '@/entities/form/model';
 import { formatDateForDisplay } from '@/shared/lib/date';
+
 import { EMPTY_ANSWER_LABEL } from './formResponses.constants';
 
 export const hasAnswerValues = (values: string[]): boolean =>

@@ -1,1 +1,1 @@
-export { default } from './QuestionTypeSelect';
+  export { default } from './QuestionTypeSelect';

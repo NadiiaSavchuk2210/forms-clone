@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { ThemeContext } from './theme.context';
+
 import { Theme } from '@/features/theme-switcher/model/theme.config';
+
 import { THEME_STORAGE_KEY } from './constants';
+import { ThemeContext } from './theme.context';
 
 interface Props {
   children: React.ReactNode;

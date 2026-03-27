@@ -2,6 +2,7 @@ import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
 import Breadcrumbs from '@/shared/ui/Breadcrumbs';
 import { Container } from '@/shared/ui/layout';
+
 import { useFormBuilder } from './model';
 import {
   FormBuilderFeedback,
@@ -12,6 +13,7 @@ import {
   FormBuilderSavePanel,
   FormBuilderSetup,
 } from './ui';
+
 import css from './FormBuilder.module.css';
 
 const FormBuilder = () => {

@@ -13,14 +13,13 @@ class TypedDocumentStringImpl extends String {
   }
 }
 
-export { TypedDocumentStringImpl as TypedDocumentString };
+  export { TypedDocumentStringImpl as TypedDocumentString };
 
 declare global {
-  // eslint-disable-next-line no-var
   var TypedDocumentString: typeof TypedDocumentStringImpl;
 }
 
 // Expose as a global identifier (so `generated/index.ts` can access it without importing).
 globalThis.TypedDocumentString = TypedDocumentStringImpl;
 
-export {};
+  export { };

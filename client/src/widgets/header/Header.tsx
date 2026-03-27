@@ -1,11 +1,14 @@
 import { Link, useLocation } from 'react-router-dom';
-import css from './Header.module.css';
-import Icon from '@/shared/ui/Icon/Icon';
+
+import { ROUTES } from '@/app/providers/router/config/routesConfig';
 import { SITE_NAME } from '@/shared/constants/metadata';
 import Button from '@/shared/ui/Button/Button';
-import { ROUTES } from '@/app/providers/router/config/routesConfig';
+import Icon from '@/shared/ui/Icon/Icon';
 import { Container } from '@/shared/ui/layout';
+
 import { getHeaderAction } from './lib';
+
+import css from './Header.module.css';
 
 const Header = () => {
   const { pathname } = useLocation();

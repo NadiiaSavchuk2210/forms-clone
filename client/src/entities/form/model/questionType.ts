@@ -1,4 +1,5 @@
 import { QuestionType } from '@/shared/api/generated';
+
 import type { FormQuestionType } from './types';
 
 export type QuestionTypeOption = {

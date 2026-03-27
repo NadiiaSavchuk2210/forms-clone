@@ -1,3 +1,9 @@
+import {
+  MAX_FORM_DESCRIPTION_LENGTH,
+  MAX_FORM_TITLE_LENGTH,
+  MAX_QUESTION_TITLE_LENGTH,
+} from '@shared/validation';
+
 import type { FormDraftData, ValidationError } from './types';
 
 export const validateFormData = (formData: FormDraftData): ValidationError[] => {
@@ -10,17 +16,20 @@ export const validateFormData = (formData: FormDraftData): ValidationError[] => 
     });
   }
 
-  if (formData.title && formData.title.length > 200) {
+  if (formData.title && formData.title.length > MAX_FORM_TITLE_LENGTH) {
     errors.push({
       field: 'form-title',
-      message: 'Form title must not exceed 200 characters',
+      message: `Form title must not exceed ${MAX_FORM_TITLE_LENGTH} characters`,
     });
   }
 
-  if (formData.description && formData.description.length > 500) {
+  if (
+    formData.description
+    && formData.description.length > MAX_FORM_DESCRIPTION_LENGTH
+  ) {
     errors.push({
       field: 'form-description',
-      message: 'Description must not exceed 500 characters',
+      message: `Description must not exceed ${MAX_FORM_DESCRIPTION_LENGTH} characters`,
     });
   }
 
@@ -43,6 +52,11 @@ export const validateFormData = (formData: FormDraftData): ValidationError[] => 
       errors.push({
         field: `question-${questionFieldId}-title`,
         message: `Question ${questionNumber} title is required`,
+      });
+    } else if (question.title.length > MAX_QUESTION_TITLE_LENGTH) {
+      errors.push({
+        field: `question-${questionFieldId}-title`,
+        message: `Question ${questionNumber} title must not exceed ${MAX_QUESTION_TITLE_LENGTH} characters`,
       });
     }
 

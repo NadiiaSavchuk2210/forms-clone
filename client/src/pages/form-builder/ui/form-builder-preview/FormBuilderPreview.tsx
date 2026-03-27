@@ -5,7 +5,9 @@ import {
   isTextQuestionType,
   normalizeQuestionOptions,
 } from '@/entities/form/model';
+
 import type { FormBuilderViewModel } from '../types';
+
 import css from './FormBuilderPreview.module.css';
 
 interface Props {

@@ -1,13 +1,15 @@
+import type { FormQuestionType } from '@/entities/form/model';
+import { isChoiceQuestionType } from '@/entities/form/model';
 import Button from '@/shared/ui/Button';
 import TextField from '@/shared/ui/TextField';
-import { isChoiceQuestionType } from '@/entities/form/model';
-import type { FormQuestionType } from '@/entities/form/model';
+
 import QuestionTypeSelect from '../question-type-select';
 import type {
-  FormBuilderViewModel,
   FormBuilderQuestionDraft,
+  FormBuilderViewModel,
   QuestionCardActions,
 } from '../types';
+
 import css from './SortableQuestionCard.module.css';
 
 interface Props extends QuestionCardActions {

@@ -1,11 +1,12 @@
-import { useMemo, useState } from 'react';
-import { toast } from 'react-hot-toast';
 import {
   PointerSensor,
-  type DragEndEvent,
   useSensor,
   useSensors,
+  type DragEndEvent,
 } from '@dnd-kit/core';
+import { useMemo, useState } from 'react';
+import { toast } from 'react-hot-toast';
+
 import { useAppDispatch, useAppSelector } from '@/app/providers/store/hooks';
 import { useCreateFormMutation } from '@/entities/form/api';
 import { QUESTION_TYPE_LABELS, QUESTION_TYPE_OPTIONS } from '@/entities/form/model';
@@ -17,17 +18,15 @@ import {
   getVisibleValidationErrors,
   validateFormData,
 } from '@/shared/lib/validation';
-import { reorderQuestions, resetFormBuilder } from '../slice/formBuilderSlice';
-import {
-  buildQuestionInput,
-  getChoiceQuestionsErrors,
-} from '../lib/formBuilder.utils';
+
+import { buildQuestionInput, getChoiceQuestionsErrors } from '../lib/formBuilder.utils';
 import {
   createFormBuilderActions,
   createFormBuilderQuestionsModel,
   createQuestionCardActions,
   createSuccessLinks,
 } from '../lib/formBuilder.view-model';
+import { reorderQuestions, resetFormBuilder } from '../slice/formBuilderSlice';
 import type { SuccessState } from '../types';
 
 export const useFormBuilder = () => {

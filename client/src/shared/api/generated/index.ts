@@ -1,5 +1,6 @@
-import { TypedDocumentString } from '../typedDocumentString';
 import { baseApi } from '../baseApi';
+import { TypedDocumentString } from '../typedDocumentString';
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -226,5 +227,5 @@ const injectedRtkApi = baseApi.injectEndpoints({
   }),
 });
 
-export { injectedRtkApi as api };
+  export { injectedRtkApi as api };
 export const { useGetFormsQuery, useLazyGetFormsQuery, useGetFormQuery, useLazyGetFormQuery, useCreateFormMutation, useSubmitResponseMutation, useGetResponsesQuery, useLazyGetResponsesQuery } = injectedRtkApi;

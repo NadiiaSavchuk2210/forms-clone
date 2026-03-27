@@ -1,12 +1,14 @@
 import { useParams } from 'react-router-dom';
+
 import { ROUTES } from '@/app/providers/router/config/routesConfig';
-import Button from '@/shared/ui/Button';
+import { getErrorMessage } from '@/shared/lib/error-handler';
+import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
 import Breadcrumbs from '@/shared/ui/Breadcrumbs';
+import Button from '@/shared/ui/Button';
 import ContentLoader from '@/shared/ui/ContentLoader';
 import EmptyState from '@/shared/ui/EmptyState';
 import { PageLayout } from '@/shared/ui/layout';
-import { getErrorMessage } from '@/shared/lib/error-handler';
-import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
+
 import { useFormFiller } from './model';
 import {
   FormFillerFeedback,
@@ -14,6 +16,7 @@ import {
   FormFillerSubmitPanel,
   QuestionAnswerCard,
 } from './ui';
+
 import css from './FormFiller.module.css';
 
 const FormFiller = () => {

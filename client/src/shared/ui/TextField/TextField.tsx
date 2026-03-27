@@ -1,10 +1,11 @@
+import { clsx } from 'clsx';
 import {
   useId,
   type ChangeEvent,
   type InputHTMLAttributes,
   type TextareaHTMLAttributes,
 } from 'react';
-import { clsx } from 'clsx';
+
 import css from './TextField.module.css';
 
 type BaseProps = {

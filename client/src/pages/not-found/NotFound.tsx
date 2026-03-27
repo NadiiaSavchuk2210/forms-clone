@@ -1,7 +1,8 @@
+import { ROUTES } from '@/app/providers/router/config/routesConfig';
+import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
 import Button from '@/shared/ui/Button';
 import { PageLayout } from '@/shared/ui/layout';
-import { usePageMeta } from '@/shared/lib/hooks/usePageMeta';
-import { ROUTES } from '@/app/providers/router/config/routesConfig';
+
 import css from './NotFound.module.css';
 
 const NotFound = () => {

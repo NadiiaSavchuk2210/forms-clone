@@ -1,4 +1,5 @@
 import Button from '@/shared/ui/Button/Button';
+
 import css from './Pagination.module.css';
 
 interface PaginationProps {

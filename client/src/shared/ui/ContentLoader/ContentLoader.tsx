@@ -1,4 +1,5 @@
 import { MdOutlineBlurCircular, MdOutlineEditNote } from 'react-icons/md';
+
 import css from './ContentLoader.module.css';
 
 interface Props {

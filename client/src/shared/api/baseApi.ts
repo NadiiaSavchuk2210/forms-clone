@@ -1,13 +1,11 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { BaseQueryFn } from '@reduxjs/toolkit/query';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { DocumentNode } from 'graphql';
 import { print } from 'graphql';
+
 import { API_BASE_URL } from '@/shared/constants';
-import type {
-  GraphQLError,
-  GraphQLRequest,
-  GraphQLResponse,
-} from './types';
+
+import type { GraphQLError, GraphQLRequest, GraphQLResponse } from './types';
 
 const rawBaseQuery = fetchBaseQuery({
   baseUrl: API_BASE_URL,

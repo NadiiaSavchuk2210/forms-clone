@@ -1,5 +1,10 @@
-import { getQuestionTypeHint } from '@/entities/form/model';
+import {
+  getQuestionTypeHint,
+  isCheckboxQuestionType,
+  isSingleChoiceQuestionType,
+} from '@/entities/form/model';
 import { type AnswerInput, type GetFormQuery } from '@/shared/api/generated';
+
 import type {
   FormFillerActions,
   FormFillerQuestionsModel,
@@ -9,12 +14,36 @@ import type {
 
 type FormQuestion = NonNullable<GetFormQuery['form']>['questions'][number];
 
+const normalizeDraftAnswerValues = (
+  question: FormQuestion,
+  values: string[] | undefined,
+): string[] => {
+  const safeValues = values ?? [];
+
+  if (isSingleChoiceQuestionType(question.type)) {
+    const selectedOption = safeValues.find((value) =>
+      question.options.includes(value),
+    );
+
+    return selectedOption ? [selectedOption] : [];
+  }
+
+  if (isCheckboxQuestionType(question.type)) {
+    return [...new Set(safeValues.filter((value) => question.options.includes(value)))];
+  }
+
+  return safeValues.slice(0, 1);
+};
+
 export const syncAnswersWithQuestions = (
   questions: FormQuestion[],
   previousAnswers: QuestionAnswersById,
 ): QuestionAnswersById =>
   questions.reduce<QuestionAnswersById>((acc, question) => {
-    acc[question.id] = previousAnswers[question.id] ?? [];
+    acc[question.id] = normalizeDraftAnswerValues(
+      question,
+      previousAnswers[question.id],
+    );
     return acc;
   }, {});
 

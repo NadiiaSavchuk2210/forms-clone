@@ -1,4 +1,4 @@
-export {
-  useGetResponsesQuery,
-  useSubmitResponseMutation,
-} from '@/shared/api/enhancedApi';
+  export {
+    useGetResponsesQuery,
+    useSubmitResponseMutation
+  } from '@/shared/api/enhancedApi';

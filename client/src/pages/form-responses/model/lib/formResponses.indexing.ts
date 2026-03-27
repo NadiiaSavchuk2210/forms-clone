@@ -1,7 +1,5 @@
-import type {
-  ResponseAnswerRecord,
-  ResponseRecord,
-} from '@/entities/response/model';
+import type { ResponseAnswerRecord, ResponseRecord } from '@/entities/response/model';
+
 import { getResponseTitle } from './formResponses.formatters';
 
 export interface IndexedResponse {
